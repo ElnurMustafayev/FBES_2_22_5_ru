@@ -22,3 +22,18 @@
 #variable = 18
 #variable = "qwerty"
 #print(type(variable))
+
+
+
+
+
+#name = input()
+
+#print("My name is " + name + ".")
+
+
+#print("Age: ")
+
+#age = input("Age: ")
+
+#print("You are " + age + " years old.")
