@@ -117,3 +117,111 @@
 #print("Content \a here...")
 
 #print("test \\\\test...")
+
+
+
+
+
+
+
+#print(isAdult)
+#print("Succes, you are adult!")
+#print("Error, access denied!")
+
+
+# if, else
+
+# if condition:
+
+#condition = True
+
+#if condition:
+#    print("one")
+#    print("two")
+#    print("three")
+
+#print("four")
+#print("five")
+
+
+#number = float(input("Input the number: "))
+
+#if number > 0:
+#    print(f"{number} is positive!")
+
+
+
+
+# if age >= 18 -> "Success, you are adult!"
+# else "Error, access denied!"
+
+
+
+
+#age = int(input("Input your age: "))
+
+#isAdult = age >= 18
+
+#if isAdult:
+#    money = 123.6
+#    money += 16.4
+#    print("Success, you are adult!")
+#    name = input("Name: ")
+#    surname = input("Surname: ")
+#    print(f"Welcome, {name} {surname}")
+#    print(f"Money: {money}$")
+
+#if isAdult == False:
+#    print("Error, access denied!")
+
+
+
+
+#number = int(input("Input your number: "))
+
+## even:     / 2 = 0
+## odd:      / 2 = 1
+
+#isEven = number % 2 == 0
+
+#if isEven == True:
+#    print("Even")
+#if isEven == False:
+#    print("Odd")
+
+
+
+
+#number = 123
+
+#if number:
+#    print("Test")
+
+#print(bool(0))
+
+
+
+
+
+#if bool(10) == True:
+#    print("one")
+
+#    if 10 != bool(True):
+#        print("two")
+
+
+#name = "Alex is"
+
+#if name == "Al exis":
+#    print(f"Hi, {name}")
+
+#print("A" > "a")
+
+
+
+
+#if True:
+#    print("1")
+#if False == False:
+#    if True:
+#        print("2")
