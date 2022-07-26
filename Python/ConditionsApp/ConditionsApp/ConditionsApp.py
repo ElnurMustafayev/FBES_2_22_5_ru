@@ -225,3 +225,115 @@
 #if False == False:
 #    if True:
 #        print("2")
+
+
+
+#age = int(input("Input your age: "))
+#gender = input('Enter "y" if you are male, else "n": ')
+
+#isSuccess = (gender == "y") + (age >= 18)
+
+#if isSuccess == 2:
+#    print("Welcome!")
+#if isSuccess != 2:
+#    print("Goodbye!")
+
+
+
+#if gender != "y":
+#    print("Goodbye, girl!")
+
+#if gender == "y":
+#    if age >= 18:
+#        print("Welcome, man!")
+#    if age < 18:
+#        print("Goodbye, baby!")
+
+
+
+# and or not
+
+
+#hasVisa = True
+#money = 54500.5
+#canGo = hasVisa and money >= 40000
+
+#if canGo:
+#    print("Can go to USA!")
+#    nucasbc = 328952
+
+
+
+
+#successLogin = "stepguest"
+#successPassword = "guest8877"
+
+#login = input("Input you login: ")
+#password = input("Input you password: ")
+
+#successLogined = login == successLogin and password == successPassword
+
+#if successLogined:
+#    print("Welcome")
+
+#if not(successLogined):
+#    print("Bad credentials")
+
+
+
+
+
+#condition = bool(1232352423 % 2)
+#print(condition)
+
+
+
+#clientName = input("Input client's name: ")
+#clientCountry = input("Input client's country: ")
+
+#if clientName == "Usama" or clientCountry == "Sirya":
+#    print(f"{clientName} is Terrorist!!!")
+
+
+# (!) > -100
+# negative, even
+
+
+#num = int(input())
+
+#isNegative = num < 0
+#isEven = num % 2 == 0
+
+#isSuccess = (isNegative or isEven) and num > -100
+
+#if isSuccess:
+#    print("success")
+#if not(isSuccess):
+#    print("error")
+
+
+# if elif else
+
+#condition = 10 < 5
+
+
+
+#age = int(input("Input your age: "))
+
+#if age >= 18:
+#    print("Adult!")
+#else:
+#    print("Access denied!")
+
+
+
+#check = True
+
+#if check:
+#    print("IF")
+#    check = False
+#    print(check)
+#else:
+#    print(check)
+
+#print(check)
