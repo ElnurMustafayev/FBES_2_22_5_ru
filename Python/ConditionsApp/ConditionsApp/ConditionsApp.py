@@ -337,3 +337,183 @@
 #    print(check)
 
 #print(check)
+
+
+#print("Start")
+#num = 0
+#condition = True
+
+#while condition:
+#    num += 1
+#    print(num)
+#    condition = not(condition)
+
+#print("End")
+
+
+#print("Start")
+#counter = 0
+
+#while counter < 3:
+#    counter += 1
+#    print(f"{counter} Iteration")
+
+#print("End")
+
+
+
+
+
+
+
+#counter = 0
+
+#while counter <= 5:
+#    print(counter)
+#    counter += 1
+
+
+
+# 5:    0,1,2,3,4,5
+# -5:   -5,-4,-3,-2,-1,0
+
+#num = int(input("Input the number: ")) # 3
+#counter = 0
+#condition = True
+
+##positive
+#if num > 0:
+#    while counter <= num:
+#        print(counter)
+#        counter += 1
+## negative
+#else:
+#    while num <= 0:
+#        print(num)
+#        num += 1
+
+
+
+
+# 5: 0,1,2,3,4,5
+# -5: -5,-4,-3,-2,-1,0
+#num = int(input("Input the number: ")) # 5
+
+## positive
+#if num > 0:
+#    start = 0
+#    end = num
+## negative
+#else:
+#    start = num
+#    end = 0
+
+#while start != (end + 1):
+#    print(start)
+#    start += 1
+
+
+
+
+
+# 5: 0,1,2,3,4,5
+# -5: -5,-4,-3,-2,-1,0
+
+#num = int(input("Input the number: ")) # 5
+#history = num
+
+#while True:
+#    if num > 0:
+#        print(num - history)
+#    else:
+#        print(num)
+#    num+=1
+
+
+
+
+# 123: 0 - 123
+
+
+#num = int(input("Input the number: "))
+#counter = 0
+
+#while counter != num and counter < 100:
+#    counter += 1
+#    print(counter)
+
+
+#counter = 0
+
+#while counter != 4:
+#    counter+=1
+#    print(counter)
+
+#print("start")
+
+#counter = 0
+
+#while True:
+#    counter+=1
+#    print(counter)
+#    if counter == 4:
+#        break
+
+#print("end")
+
+
+#print("start")
+
+#counter = 0
+
+#while True:
+#    print(counter)
+#    counter += 1
+
+#    if not(counter % 5):
+#        break
+
+#print("end")
+
+
+
+
+#num = int(input("Input the number: "))
+
+#while True:
+#    isOdd = num % 2 == 1
+
+#    if isOdd:
+#        num-=1
+#        continue
+
+#    print(num)
+#    num-=1
+
+#    if num < 0:
+#        break
+
+
+
+
+
+
+# 97:
+# 1,2,3,4,5,6,7,8,9,
+# 11,12,13,14,15,16,17,18,19
+# ...
+# 91,92,93,94,95,96,97
+
+#num = int(input("Input the number: "))
+#counter = 0
+
+#while True:
+#    if counter >= num:
+#        break
+
+#    counter += 1
+
+#    if counter % 10 == 0:
+#        continue
+
+#    print(counter)
