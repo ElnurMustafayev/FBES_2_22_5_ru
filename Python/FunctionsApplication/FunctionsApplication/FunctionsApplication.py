@@ -156,3 +156,157 @@
 
 #Func()
 #print(name)             # Elnur
+
+
+
+
+
+
+
+
+#applicationName = "MyApp"
+#name = "Unknown"
+
+#def AskUsername():
+#    global name
+#    name = input("Input your name: ")
+
+
+#def Welcome():
+#    print(f"Dear {name}, Welcome to {applicationName}!")
+
+#AskUsername()
+#Welcome()
+
+
+
+
+
+
+
+
+# Register() [name, surname, age]
+# Validate() [age +18] "Success" / "Access denied!"
+
+
+
+
+#def Register():
+#    global name, surname, age
+
+#    name = input("Name: ")
+#    surname = input("Surname: ")
+#    age = int(input("Age: "))
+
+#def Validate():
+#    global name, surname, age
+
+#    if name == "" or surname == "":
+#        print("Name and Surname must be filled")
+
+#    #print(f"Age is {('' if age >= 18 else 'not')} OK")
+
+#    print(("Age is OK" if age >= 18 else "Age is not OK"))
+
+#    #print("Age is OK") if age >= 18 else print("Age is not OK")
+
+#    #if age >= 18:
+#    #    print("Age is OK")
+#    #else:
+#    #    print("Age is not OK")
+
+
+#Register()
+#Validate()
+
+
+
+
+
+
+
+#username = "Usama"
+
+#def RenameUser():
+#    global username
+#    #global cash
+
+#    username = input(f"Input name to rename your old name '{username}'")
+#    #cash = 0
+
+#RenameUser()
+#print(username)
+
+
+
+
+
+
+#def Func(num):
+#    print(num)
+
+#num = 123
+#Func(num)
+
+
+
+
+#def Register():
+#    global name, surname, age
+
+#    name = input("Name: ")
+#    surname = input("Surname: ")
+#    age = int(input("Age: "))
+
+
+#def Validate(age):
+#    print("Age is OK" if age >= 18 else "Age is not OK")
+
+#name = "Unknown"
+#surname = "Unknown"
+#age = -1
+
+#Register()
+#Validate(age)
+
+
+
+
+
+
+#def Func(num):
+#    print(num)
+
+#x = 100
+
+#Func(123)
+#Func(x)
+#Func(f"Test {x}")
+#Func(123 == 777)
+#Func(123 + 777)
+
+
+#def Func(num):
+#    print(num)
+
+#Func(155)
+
+
+
+
+#num = 10
+
+#while num != 0:
+#    print(num)
+#    num -= 1
+
+
+
+def FromNumToZero(num):
+    while num != 0:
+        print(num)
+        num -= 1
+    print("\n\n\n")
+
+FromNumToZero(10)
+FromNumToZero(5)
