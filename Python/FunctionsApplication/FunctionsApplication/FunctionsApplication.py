@@ -302,11 +302,140 @@
 
 
 
-def FromNumToZero(num):
-    while num != 0:
-        print(num)
-        num -= 1
-    print("\n\n\n")
+#def FromNumToZero(num):
+#    while num != 0:
+#        print(num)
+#        num -= 1
+#    print("\n\n\n")
 
-FromNumToZero(10)
-FromNumToZero(5)
+#FromNumToZero(10)
+#FromNumToZero(5)
+
+
+
+
+#def Func(age):
+#    if age >= 18:
+#        print("Adult")
+#    else:
+#        print("Access denied")
+
+#Func(5)
+#Func(0)
+#Func(-5)
+
+
+
+
+#def Recursion(num):
+#    num += 1
+#    print(num)
+#    Recursion(num)
+
+#num = 0
+#Recursion(num)
+
+
+
+
+
+#def Recursion(num):
+#    num += 1
+#    print(num)
+
+#    if num < 100:
+#        Recursion(num)
+
+#num = 0
+#Recursion(num)
+
+
+
+
+
+#def Recursion(num):
+#    if num != 0:
+#        print(num)
+#        num += (-1 if num > 0 else 1)
+#        Recursion(num)
+#    else:
+#        print(0)
+
+#num = 20
+#Recursion(num)
+
+
+
+#name = input("Name: ")
+#print(name)
+
+
+
+#def GetNumber():
+#    print("Start")
+#    return 123
+#    print("End")
+
+#num = GetNumber()
+#print(num)
+
+
+#def Func():
+#    while True:
+#        print("one")
+#        while True:
+#            print("two")
+#            return
+
+#var = Func()
+#print(var)
+
+
+
+#def Func(num):
+#    print(num)
+#    return num > 5
+
+#print(Func(-5))
+
+#print(Func(5))
+
+#print(Func(7))
+
+
+
+
+
+
+#def ChangeNumber(num):
+#    return num + 1
+
+#num = 5
+#print(ChangeNumber(ChangeNumber(ChangeNumber(num))))
+
+#print(num)
+
+
+
+
+#def IsAdult(age):
+#    return age >= 18
+
+#    #return True if age >= 18 else False
+
+#    #if age >= 18:
+#    #    return True
+#    #else:
+#    #    return False
+
+#age = int(input("Age: "))
+#isAdult = IsAdult(age)
+#print(isAdult)
+
+
+#def AskName():
+#    return print("Test")
+#    #return input("Name: ")
+
+#name = AskName()
+#print(name)
