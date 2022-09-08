@@ -439,3 +439,78 @@
 
 #name = AskName()
 #print(name)
+
+
+
+#def Func1():
+#    print("F1")
+#    Func2()
+
+#def Func2():
+#    Func1()
+#    print("F2")
+
+#Func1()
+
+
+
+
+#def Func(num = 100):
+#    print(num)
+    
+#Func(True)
+#Func(None)
+#Func()
+#Func(10 - 10)
+
+
+
+#def SayHelloToUser(name = "Unknown"):
+#    print(f"Hello, {name}!")
+
+#SayHelloToUser("Elnur")
+#SayHelloToUser()
+
+
+
+
+
+
+#def Func(num1, num2 = -1):
+#    print(num1) # 10
+#    print(num2) # -1
+
+#Func(10)
+
+
+
+
+#def Func(num2, num1 = 3, num3 = 1, num4 = True):
+#    print(num1)
+#    print(num2)
+#    print(num3)
+#    print(num4)
+
+#num = 100
+#Func(num1 = 1, num2 = num, num4 = 4, num3 = 3)
+
+
+
+
+#def DublicateWords(count, word = "*"):
+#    print(count * word)
+
+#DublicateWords(5, "$")
+#DublicateWords(10)
+
+
+
+
+
+#def DublicateWords(count, word = "*", isHorizontal = True):
+#    word += "" if isHorizontal else "\n"
+#    print(count * word)
+
+#DublicateWords(5, "test", False)
+#DublicateWords(5, "test")
+#DublicateWords(5)
