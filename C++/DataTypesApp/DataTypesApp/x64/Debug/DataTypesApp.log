@@ -1,0 +1,3 @@
+﻿  DataTypesApp.cpp
+C:\Users\e.mustafayev\Desktop\Code\FBES_2_22_5_ru\C++\DataTypesApp\DataTypesApp\DataTypesApp.cpp(6,1): warning C4326: return type of 'main' should be 'int' instead of 'short'
+  DataTypesApp.vcxproj -> C:\Users\e.mustafayev\Desktop\Code\FBES_2_22_5_ru\C++\DataTypesApp\x64\Debug\DataTypesApp.exe
