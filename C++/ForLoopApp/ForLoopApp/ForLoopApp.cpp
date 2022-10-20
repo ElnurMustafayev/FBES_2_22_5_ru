@@ -55,7 +55,7 @@ int main()
     }*/
 
 
-    int toGuess = 50;
+    /*int toGuess = 50;
 
     int num = 0;
     for (int i = 3; i > 0; i--)
@@ -68,5 +68,68 @@ int main()
 
         cout << "Congratulations!!!" << endl;
         break;
+    }*/
+
+
+
+    /*int i = 0;
+    for (; i < 10; i++)
+    {
+        cout << i << endl;
     }
+    cout << i << endl;*/
+
+
+
+
+    /*for (int i = 0; ;i++)
+    {
+        cout << i << endl;
+    }*/
+
+
+
+    /*for (int i = 0; i < 10; )
+        cout << i++ << endl;*/
+
+
+    /*for (; ;)
+        cout << "Iteration" << endl;*/
+
+    /*
+        // init var
+        int counter = 0;
+
+        for (; ;) {
+            cout << "Iteration" << endl;
+
+            // change var
+            counter++;
+
+            // check condition for stop
+            if (counter > 2)
+                break;
+        }
+    */
+
+
+
+    
+    /*for (cout << "Start" << endl; cout << "Condition" << endl; cout << "End iteration" << endl)
+    {
+        cout << "Start iteration" << endl;
+    }*/
+
+
+    /*for (cout << "a" << endl; cout << "b" << endl; cout << "c" << endl)
+    {
+        cout << "d" << endl;
+    }*/
+
+
+
+    /*for (int x = 0, char y = 10; x < 10 && y > 0; x++, y--)
+    {
+        cout << x << " " << y << endl;
+    }*/
 }
