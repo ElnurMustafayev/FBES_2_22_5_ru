@@ -132,4 +132,112 @@ int main()
     {
         cout << x << " " << y << endl;
     }*/
+
+    // 1*1 1*2 1*3 1*4 1*5 1*6 1*7 1*8 1*9
+    // 2*1 2*2 2*3 2*4 2*5 2*6 2*7 2*8 2*9
+    // ...
+    // 9*1 9*2 9*3 9*4 9*5 9*6 9*7 9*8 9*9
+
+    
+    /*for (int i = 11; i < 100; i++)
+    {
+        if (i % 10 == 0)
+            continue;
+
+        int result = ((int)(i / 10)) * (i % 10);
+
+        cout << result << "\t";
+
+        if (i % 10 == 9)
+            cout << endl;
+    }*/
+
+
+
+    /*for (int x = 1, y = 1; x <= 9; y++)
+    {
+        cout << x * y << "\t";
+
+        if (y == 9) {
+            cout << endl;
+            y = 0;
+            x++;
+        }
+    }*/
+
+
+
+
+
+    /*for (int x = 1; x <= 9; x++)
+    {
+        for (int y = 1; y <= 9; y++)
+        {
+            cout << x * y << "\t";
+        }
+        cout << endl;
+    }*/
+
+
+
+
+
+
+    
+    // aa, ab, ac, ad, ae
+    // ba, bb, bc, bd, be
+    // ca, cb, cc, cd, ce
+    // da, db, dc, dd, de
+    // ea, eb, ec, ed, ee
+
+
+
+    // 1. for(int)
+    /*for (int i = 0; i < 25; i++)
+    {
+        char first = ('a' + (i / 5));
+        char second = ('a' + (i % 5));
+
+        cout << first << second << (second == 'e' ? "\n" : ",");
+    }*/
+
+
+
+    // 2. for(int, int)
+    /*for (char x = 'a', y = 'a'; x <= 'e'; y++)
+    {
+        cout << x << y << (y == 'e' ? "\n" : ",");
+
+        if (y >= 'e') {
+            y = 'a' - 1;
+            x++;
+        }
+    }*/
+
+
+
+    // 3. for { for{} }
+    /*for (char x = 'a'; x <= 'e'; x++)
+    {
+        for (char y = 'a'; y <= 'e'; y++)
+        {
+            cout << x << y << (y == 'e' ? "\n" : ",");
+        }
+    }*/
+
+    /*int length;
+    char symbol;
+    cout << "Length: ";
+    cin >> length;
+    cout << "Symbol: ";
+    cin >> symbol;
+    
+    for (int x = 1; x <= length; x++)
+    {
+        for (int y = 1; y <= length; y++)
+        {
+            cout << symbol << " ";
+        }
+        cout << endl;
+    }*/
 }
