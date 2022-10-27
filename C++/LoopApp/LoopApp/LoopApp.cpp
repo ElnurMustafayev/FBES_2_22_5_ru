@@ -111,15 +111,49 @@ int main()
 
 
 
-	char userInput;
-	cout << "Enter 'B' for big alphabet: ", cin >> userInput;
+	// char userInput;
+	// cout << "Enter 'B' for big alphabet: ", cin >> userInput;
 
-	bool isBig = userInput == 'b' || userInput == 'B';
+	// bool isBig = userInput == 'b' || userInput == 'B';
 
-	int step = isBig ? 32 : 0;
+	// int step = isBig ? 32 : 0;
 
-	char symbol = 'a' - step;
-	while (symbol <= 'z' - step) {
-		cout << symbol++ << endl;
-	}
+	// char symbol = 'a' - step;
+	// while (symbol <= 'z' - step) {
+	// 	cout << symbol++ << endl;
+	// }
+
+
+
+	/*int count = 0;
+	while (false) {
+		cout << "iteration" << endl;
+		count++;
+	}*/
+
+	/*while (false) {
+		cout << "iteration" << endl;
+	}*/
+
+
+
+	/*do {
+		cout << "iteration" << endl;
+	} while (false);*/
+
+
+	// int successLogin = 123;
+	// int successPassword = 321;
+
+	/*int login = 0, password = 0;
+	while (!(login == successLogin && password == successPassword)) {
+		cout << "Login: ", cin >> login;
+		cout << "Password: ", cin >> password;
+	}*/
+
+	/*int login, password;
+	do {
+		cout << "Login: ", cin >> login;
+		cout << "Password: ", cin >> password;
+	} while (!(login == successLogin && password == successPassword));*/
 }
