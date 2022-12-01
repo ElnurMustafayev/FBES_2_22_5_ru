@@ -141,6 +141,10 @@
   <ItemGroup>
     <ClCompile Include="MenuApp.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="KEYBOARD_KEYS.h" />
+    <ClInclude Include="MenuFunctions.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

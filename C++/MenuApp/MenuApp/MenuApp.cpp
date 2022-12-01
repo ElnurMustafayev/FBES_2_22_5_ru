@@ -1,14 +1,10 @@
-#define _CRT_SECURE_NO_WARNINGS
-
 #include <iostream>
 #include <conio.h>
+#include <windows.h>
 
 using namespace std;
 
-enum KEYBOARD_KEYS {
-	up = 72,
-	down = 80
-};
+#include "MenuFunctions.h"
 
 int main()
 {
@@ -30,45 +26,43 @@ int main()
 	*/
 
 
+
+//	cout << "One" << endl;
+//
+//x2:
+//	while (true) {
+//		goto x1;
+//		cout << "Two" << endl;
+//	}
+//
+//x1:
+//	goto x2;
+//
+//	cout << "Three" << endl;
+	
+	
+	
+
+	
+
+	
+
 	
 
 
 
-
-
-	const int menuLength = 5;
-	int selectedIndex = 0;
-
-	char menu[menuLength][50]{
-		"Home",
-		"Edit",
-		"Delete",
-		"About us",
-		"Exit",
-	};
-
-	while (true) {
+	bool end = false;
+	while (end == false) {
 		// print
-		system("cls");
-		for (int i = 0; i < menuLength; i++)
-		{
-			if (i == selectedIndex) {
-				cout << "> " << menu[i] << endl;
-			}
-			else {
-				cout << menu[i] << endl;
-			}
-		}
+		PrintMenu();
 
 		// input
 		int key = _getch();
 
 		// logic
-		if (key == KEYBOARD_KEYS::up) {
-			selectedIndex--;
-		}
-		else if (key == KEYBOARD_KEYS::down) {
-			selectedIndex++;
-		}
+		if (Logic(key))
+			break;
 	}
+
+	cout << "Goodbye!" << endl;
 }
