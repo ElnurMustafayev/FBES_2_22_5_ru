@@ -5,8 +5,8 @@
 
 using namespace std;
 
-const int areaWidth = 15;
-const int areaHeight = 15;
+const int areaWidth = 12;
+const int areaHeight = 12;
 
 int heroX = 0;
 int heroY = 0;
@@ -14,7 +14,42 @@ int heroY = 0;
 int enemyX = 0;
 int enemyY = 0;
 
+int score = 0;
+
 int area[areaHeight][areaWidth]{};
+
+char name[20] = "Bob";
+char surname[20] = "Marley";
+
+
+
+void Login(int* step) {
+	system("cls");
+
+	// NAME
+	if (*step < 1) {
+		cout << "Name: ", cin >> name;
+	}
+
+	if (strlen(name) < 3) {
+
+		throw "Name can not be less than 3!";
+	}
+	*step = 1;
+
+
+
+	// SURNAME
+	if (*step < 2) {
+		cout << "Surname: ", cin >> surname;
+	}
+
+	if (strlen(surname) < 3) {
+
+		throw "Surname can not be less than 3!";
+	}
+	*step = 2;
+}
 
 
 void InitArea() {
@@ -26,11 +61,6 @@ void InitArea() {
 				area[y][x] = 3;
 		}
 	}
-
-	area[2][2] = 3;
-	area[2][3] = 3;
-	area[2][4] = 3;
-	area[2][5] = 3;
 }
 
 
@@ -86,6 +116,9 @@ void PrintAreaElement(int elementNumber = GameElements::empty) {
 // draws area array
 void DrawArea() {
 	system("cls");
+
+	cout << name << " " << surname << endl;
+	cout << "Score: " << score << "\n\n";
 
 	for (int y = 0; y < areaHeight; y++)
 	{
@@ -163,11 +196,43 @@ void Logic(int key) {
 			}
 		}
 		break;
+
+	case KEYBOARD_KEYS::space:
+		InitCharacter(&enemyY, &enemyX, GameElements::enemy);
+
+		score += 100;
+
+		if (score % 500 == 0) {
+			for (size_t i = 0; i < 10; i++)
+			{
+				InitCharacter(GameElements::fence);
+			}
+		}
+		else {
+			InitCharacter(GameElements::fence);
+		}
+		break;
+	}
+
+	// hero is on enemy
+	if (heroY == enemyY && heroX == enemyX) {
+		InitCharacter(&enemyY, &enemyX, GameElements::enemy);
+
+		score += 100;
+
+		if (score % 500 == 0) {
+			for (size_t i = 0; i < 10; i++)
+			{
+				InitCharacter(GameElements::fence);
+			}
+		}
+		else {
+			InitCharacter(GameElements::fence);
+		}
 	}
 
 	area[heroY][heroX] = GameElements::hero;
 }
-
 
 
 

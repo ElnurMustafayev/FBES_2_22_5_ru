@@ -9,6 +9,7 @@ enum KEYBOARD_KEYS {
 	a = 'a',
 	s = 's',
 	d = 'd',
+	space = 32,
 	enter = 13,
 	esc = 27,
 };
