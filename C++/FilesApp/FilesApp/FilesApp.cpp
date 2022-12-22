@@ -34,6 +34,24 @@ void ReadAllText(FILE* stream) {
 
 void main()
 {
+	char filename[30]{};
+	char fileextension[30]{};
+
+	cin >> filename;
+	cin >> fileextension;
+
+	char filefullname[60]{};
+	
+	strcat(filefullname, filename);
+	strcat(filefullname, ".");
+	strcat(filefullname, fileextension);
+
+	fopen(filefullname, "w");
+
+
+
+
+
 	/*srand(time(0));
 	for (int i = 0; i < 10000; i++)
 	{
