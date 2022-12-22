@@ -3,6 +3,55 @@
 using namespace std;
 
 
+template<typename T>
+T* AddElement(T* arr, int& length, T value, int index) {
+    if (index < 0 || index > length)
+        throw "incorrect index in AddElement";
+
+    T* newArr = new T[length + 1]{};
+
+    // copy
+    for (int i = 0; i < index; i++)
+        newArr[i] = arr[i];
+
+    newArr[index] = value;
+
+    for (int i = index; i < length; i++)
+        newArr[i + 1] = arr[i];
+
+    delete[] arr;
+
+    length++;
+
+    return newArr;
+}
+
+
+
+template<typename T>
+T* DeleteElement(T* arr, int& length, const int index) {
+    if (arr == nullptr)
+        throw "Array can not be empty in DeleteElement";
+
+    if (index < 0 || index >= length)
+        throw "incorrect index in DeleteElement";
+
+    T* newArr = new T[length - 1]{};
+
+    for (int i = 0; i < index; i++)
+        newArr[i] = arr[i];
+
+    for (int i = index; i < length - 1; i++)
+        newArr[i] = arr[i + 1];
+
+    length--;
+
+    delete[] arr;
+
+    return newArr;
+}
+
+
 int* AddElement(int* arr, int newElement, int& length) {
 	// 1. init
 	int* newArr = new int[length + 1];
@@ -34,6 +83,30 @@ void PrintArr(const int* arr, const int length) {
 
 int main()
 {
+	// int length = 3;
+    // int* arr = new int[length] {8, 3, 5};
+
+    // try {
+    //     cout << "1: " << endl;
+    //     Print(arr, length);
+
+
+    //     arr = AddElement(arr, length, 7, 2);
+    //     cout << "2: " << endl;
+    //     Print(arr, length);
+
+
+    //     DeleteElement(arr, length, 1);
+    //     cout << "3: " << endl;
+    //     Print(arr, length);
+    // }
+    // catch (const char* errorMessage) {
+    //     cout << "Error: " << errorMessage << endl;
+    // }
+
+
+
+
 	/*int length = 5;
 	int** arr = new int*[length] {};
 	for (int i = 0; i < length; i++)
