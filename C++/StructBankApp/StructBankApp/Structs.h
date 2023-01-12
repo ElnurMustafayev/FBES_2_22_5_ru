@@ -4,19 +4,20 @@ double currencyRates[]{
     1, 1.7, 1.6
 };
 enum CURRENCIES {
-    azn,
+    azn = 1,
     usd,
     euro
 };
 enum CARD_TYPES {
-    credit, debet
+    credit = 1,
+    debet
 };
 enum PRODUCT_TYPES {
     food, dairy, sport
 };
 
 struct Card {
-    double balance;
+    double balance = 0;
     CARD_TYPES type;
     CURRENCIES currency;
 };
@@ -24,7 +25,8 @@ struct Card {
 struct Account {
     char nickname[50]{};
     char password[50]{};
-    Card* cards;
+    Card** cards = nullptr;
+    int cardsCount = 0;
     bool isBlocked = false;
 };
 

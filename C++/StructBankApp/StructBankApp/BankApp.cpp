@@ -4,12 +4,14 @@
 #include <conio.h>
 #include "Functions.h"
 
+#define TEST
+
 using namespace std;
 
 Bank bank = Bank();
 
 void main() {
-    FILE* bankStream = fopen("data\\bank.bin", "r");
+    /*FILE* bankStream = fopen("data\\bank.bin", "r");
     fread(&bank, sizeof(Bank), 1, bankStream);
     fclose(bankStream);
 
@@ -23,8 +25,10 @@ void main() {
         fread(account, sizeof(Account), 1, usersStream);
         AddUserInBank(bank, account);
     }
-    fclose(usersStream);
+    fclose(usersStream);*/
 
+#ifndef TEST
+    // LOGIN / REGISTRATION
     while (bank.currentAccount == nullptr) {
         system("cls");
         cout << "1 - Login" << endl;
@@ -41,15 +45,15 @@ void main() {
                 Account* newAcc = RegistrationMenu();
                 AddUserInBank(bank, newAcc);
 
-                // save bank
-                FILE* bankStream = fopen("data\\bank.bin", "w");
-                fwrite(&bank, sizeof(Bank), 1, bankStream);
-                fclose(bankStream);
+                //// save bank
+                //FILE* bankStream = fopen("data\\bank.bin", "w");
+                //fwrite(&bank, sizeof(Bank), 1, bankStream);
+                //fclose(bankStream);
 
-                // save users
-                FILE* usersStream = fopen("data\\users.bin", "a");
-                fwrite(newAcc, sizeof(Account), 1, usersStream);
-                fclose(usersStream);
+                //// save users
+                //FILE* usersStream = fopen("data\\users.bin", "a");
+                //fwrite(newAcc, sizeof(Account), 1, usersStream);
+                //fclose(usersStream);
             }
         }
         catch (const char* message) {
@@ -57,38 +61,20 @@ void main() {
             _getch();
         }
     }
+#endif
 
+#ifdef TEST
+    Account* testAccount = new Account();
+    strcpy_s(testAccount->nickname, "test");
+    strcpy_s(testAccount->nickname, "test");
 
+    bank.usersCount = 1;
+    bank.users = new Account * [1] {
+        testAccount
+    };
+    bank.currentAccount = testAccount;
+#endif 
 
-
-
-
-    
-
-    /*
-        Console APP: StepBank
-
-        Bank
-            int usersCount
-            Users[]
-
-        Account
-            bool isBlocked
-            char* nickname
-            char* password
-            Cards[]
-
-        Card
-            double balance
-            enum type
-            enum currency
-
-        Product
-            char* name
-            double price
-            enum type
-
-        1. registration
-        2. sign in
-    */
+    // APPLICATION
+    GeneralMenu(bank.currentAccount);
 }
