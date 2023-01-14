@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{dfb418d1-8bb8-48de-aeaf-9a16242b646c}</ProjectGuid>
-    <RootNamespace>StructsApp</RootNamespace>
+    <ProjectGuid>{e8ac4410-a405-4999-9101-c01b8c043dc3}</ProjectGuid>
+    <RootNamespace>RepeatApp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,9 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Repeat.cpp" />
-    <ClCompile Include="WithoutStruct.cpp" />
-    <ClCompile Include="WithStruct.cpp" />
+    <ClCompile Include="RepeatApp.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

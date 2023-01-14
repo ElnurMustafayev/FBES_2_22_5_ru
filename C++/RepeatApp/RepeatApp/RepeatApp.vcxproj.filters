@@ -15,13 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WithoutStruct.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WithStruct.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Repeat.cpp">
+    <ClCompile Include="RepeatApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

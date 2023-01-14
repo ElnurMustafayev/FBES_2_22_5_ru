@@ -52,7 +52,7 @@ void PrintUser(Person person) {
 	cout << "Gender: " << GetGenderStr(person.gender) << endl;
 }
 
-void main() {
+void mainn() {
 	Person person1 = Person();
 	person1.age = 33;
 	person1.gender = Genders::male;
