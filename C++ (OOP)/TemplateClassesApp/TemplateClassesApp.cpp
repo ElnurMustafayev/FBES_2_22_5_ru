@@ -50,6 +50,14 @@ int Func1(qwerty obj) {
 //};
 
 
+template<typename T>
+struct Person {
+	T id;
+	string name;
+	string surname;
+	int age;
+}
+
 
 template<typename T>
 class Storage {
