@@ -5,11 +5,11 @@ using namespace std;
 
 int main()
 {
-	/*User user = User("Elnur", "Secret12345!");
+	User<int> user = User<int>("Elnur", "Secret12345!");
 
-	cout << user.Login("test", "qwerty") << endl;*/
+	cout << user.Login("test", "qwerty") << endl;
 
-	String str = "qwerty";
+	/*String str = "qwerty";
 	cout << str.Length() << endl;
-	cout << str.GetString() << endl;
+	cout << str.GetString() << endl;*/
 }

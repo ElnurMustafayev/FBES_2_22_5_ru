@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{104cdeb8-a4c1-4d61-bc33-d0d30433c7c2}</ProjectGuid>
-    <RootNamespace>ConstructorsApp</RootNamespace>
+    <ProjectGuid>{c53cc6ae-b135-4e75-9aae-672838276e77}</ProjectGuid>
+    <RootNamespace>NamespacesApp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,10 +127,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConstructorsApp.cpp" />
+    <ClCompile Include="NamespacesApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Person.h" />
+    <ClInclude Include="MyNamesapceLib.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
