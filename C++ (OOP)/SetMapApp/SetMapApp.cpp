@@ -54,6 +54,20 @@ struct Operation {
 
 int main()
 {
+	// map<int, string> col = map<int, string>();
+    // col[1] = "One";
+    // col[2] = "Two";
+    // col.insert(pair<int, string>(3, "Three"));
+    // //cout << (col[2]) << endl;
+
+	// // delete el
+    // col.erase(2);
+    // col.erase(1);
+
+    // for (auto item : col) {
+    //     cout << (item.first) << " - " << (item.second) << endl;
+    // }
+
 	/*set<int> nums = set<int>();
 
 	nums.insert(17);
