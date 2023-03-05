@@ -55,6 +55,7 @@ struct C : public B {
 //	protocol->Stop();
 //}
 
+
 int main()
 {
 	//Func(new UDP());
@@ -86,11 +87,11 @@ int main()
 	//
 	//animal->Say();
 
-	Person person = Person();
+	/*Person person = Person();
 	person.name = "Bob";
 
 	Gun* gun = new Rpg();
 	gun->Shot(person);
 
-	cout << "Name: " << person.name << "\nHP: " << person.hp << endl;
+	cout << "Name: " << person.name << "\nHP: " << person.hp << endl;*/
 }
