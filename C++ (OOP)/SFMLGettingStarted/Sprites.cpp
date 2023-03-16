@@ -3,24 +3,27 @@
 
 using namespace std;
 
-int Main()
-{
-    const string imagePath = "assets\\dvd.png";
+int MMain() {
+    /*
+    */
+    const string imagePath = "assets\\cat.jpg";
+
     srand(time(0));
     sf::Vector2i windowSize = sf::Vector2i(800, 500);
     sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "SFML works!");
 
-    sf::Vector2f rectSize = sf::Vector2f(150, 100);
-    sf::Vector2f rectPos = sf::Vector2f(0, 0);
+    sf::Vector2f rectSize = sf::Vector2f(200, 200);
+    sf::Vector2f rectPos = sf::Vector2f((windowSize.x / 2) - (rectSize.x / 2), (windowSize.y / 2) - (rectSize.y / 2));
     sf::RectangleShape rectangle = sf::RectangleShape(rectSize);
     rectangle.setPosition(rectPos);
+    rectangle.setOrigin(rectSize.x / 2, rectSize.y / 2);
 
     sf::Texture texture = sf::Texture();
     texture.loadFromFile(imagePath);
     rectangle.setTexture(&texture);
 
-    float directionX = 0.1, directionY = 0.1;
-    float speed = 0.5;
+    //rectangle.setOutlineColor(sf::Color::Red);
+    //rectangle.setOutlineThickness(10);
 
     while (window.isOpen())
     {
@@ -36,29 +39,10 @@ int Main()
                 break;
             }
         }
-        // Y
-        if (rectPos.y <= 0) {
-            directionY = speed;
-        }
-        else if (rectPos.y >= (windowSize.y - rectSize.y)) {
-            directionY = -speed;
-        }
 
-        // X
-        if (rectPos.x <= 0) {
-            directionX = speed;
-        }
-        else if (rectPos.x >= (windowSize.x - rectSize.x)) {
-            directionX = -speed;
-        }
+        rectangle.rotate(0.05);
 
-        rectPos.x += directionX;
-        rectPos.y += directionY;
-
-        rectangle.setPosition(rectPos);
-        rectangle.rotate(0.5);
-
-        window.clear(sf::Color::White);
+        window.clear(sf::Color::Black);
         window.draw(rectangle);
         window.display();
     }
