@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int Main()
+int MMMain()
 {
     const string imagePath = "assets\\dvd.png";
     srand(time(0));

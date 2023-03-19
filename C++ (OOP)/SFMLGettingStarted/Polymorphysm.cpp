@@ -9,7 +9,7 @@ void InitRandomParams(sf::Shape* shape, float speed) {
     shape->setFillColor(sf::Color(rand() % 256, rand() % 256, rand() % 256));
 }
 
-int main()
+int Main()
 {
     sf::RenderWindow window(sf::VideoMode(400, 400), "SFML works!");
     
