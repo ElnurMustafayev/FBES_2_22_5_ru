@@ -8,7 +8,7 @@ const int windowWidth = 800, windowHeight = 800;
 #include "Text.h"
 #include "Hero.h"
 
-int main()
+int mainnnn()
 {
     sf::Texture heroTexture = sf::Texture();
     heroTexture.loadFromFile("assets/hero.png");
