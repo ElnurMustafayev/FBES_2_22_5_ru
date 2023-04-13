@@ -7,7 +7,36 @@
             return arg1+1;
         }
 
+
+        static int[] AddNumber(int[] numbers, int newNumber) {
+            int[] newNumbers = new int[numbers.Length + 1];
+
+            for (int i = 0; i < numbers.Length; i++) {
+                newNumbers[i] = numbers[i];
+            }
+
+            newNumbers[numbers.Length] = newNumber;
+
+            return newNumbers;
+        }
+
+        static void PrintArray(int[] arr) {
+            for (int i = 0; i < arr.Length; i++) {
+                Console.WriteLine(arr[i]); 
+            }
+        }
+
         static void Main() {
+            int[] numbers = { 1, 2, 3 };
+
+            numbers = AddNumber(numbers, 4);
+            numbers = AddNumber(numbers, 5);
+            numbers = AddNumber(numbers, 6);
+
+            PrintArray(numbers);
+
+
+
             //Console.WriteLine(Method(Method(100, "test"), "qwerty"));
 
 
