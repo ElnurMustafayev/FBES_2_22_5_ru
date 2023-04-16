@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericsApp", "GenericsApp\GenericsApp.csproj", "{FC385D46-F5C1-4779-88D9-161D4F024BF6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC385D46-F5C1-4779-88D9-161D4F024BF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC385D46-F5C1-4779-88D9-161D4F024BF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC385D46-F5C1-4779-88D9-161D4F024BF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC385D46-F5C1-4779-88D9-161D4F024BF6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {750A8466-1753-434B-B13E-998934ED0A5F}
+	EndGlobalSection
+EndGlobal
