@@ -1,17 +1,75 @@
-﻿namespace PropertiesApp {
-    public class Person {
-        private string name;
-        private int age;
+﻿namespace PropertiesApp;
+
+public enum ProductStatus : int {
+    soldout = 0,
+    bestseller,
+    unknown,
+};
+
+public class Product {
+    //public ProductStatus Status { get; set; }
+    //public ProductStatus Status { get; set; }
 
 
-        public string GetName() => this.name;
-        public void SetName(string name) {
-            this.name = name;
+    //private ProductStatus status;
+
+    //public ProductStatus Status {
+    //    get => status;
+    //    set => status = value;
+    //}
+}
+
+
+
+
+public class User {
+    private string nickname;
+    private string login = "default";
+
+    //public string Login => this.login;
+    //public string NormalizedLogin => this.login.ToUpper();
+    //public bool HasLogin => string.IsNullOrWhiteSpace(this.login);
+
+    public string Login {
+        get => this.login;
+        protected set => this.login = value;
+    }
+
+    public string Nickname {
+        get => this.nickname;
+        set {
+            if (this.Nickname == value) {
+                throw new Exception();
+            }
+            this.nickname = value;
         }
+    }
 
-        public int GetAge() {
+
+    public User(string nickname, string login) {
+        this.Nickname = nickname;
+        this.Login = login;
+    }
+}
+
+
+
+
+
+
+public class Person {
+    private int age;
+
+    public int Age {
+        // int GetAge()
+        get {
             return this.age;
         }
-        public void SetAge(int age) => this.age = age;
+
+        // void SetAge(int value)
+        set {
+            //Console.WriteLine($"SETTER with value: {value}");
+            this.age = value;
+        }
     }
 }

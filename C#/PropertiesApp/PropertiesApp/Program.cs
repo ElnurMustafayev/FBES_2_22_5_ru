@@ -1,25 +1,36 @@
-﻿namespace PropertiesApp {
-    public class User<TId> {
-        public TId id;
+﻿namespace PropertiesApp;
 
-        public User() { }
-        public User(TId id) => this.id = id;
+public class Program {
+    private static void Main() {
 
-        public static User<TId> Create(TId id) {
-            return new User<TId>(id);
-        }
-    }
-
-    public class Program {
-        static void Main() {
-            //var user = new User<double>();
-            //var test = User<decimal>.Create(23.6M);
-            //Console.WriteLine(test.id.GetType());
-
-            //var num = 123;
-            //num = "qwerty";
+        //Product product = new Product();
+        //product.Status = ProductStatus.bestseller;
+        //product.Status = ProductStatus.soldout;
+        //Console.WriteLine(product.Status);
 
 
-        }
+
+
+
+
+
+
+
+        //User user = new User("nickname", "login");
+        //user.Nickname = "Bob777";
+        //user.Login = "Bob777";
+        //Console.WriteLine(user.Login);
+
+
+
+
+
+
+
+
+        //Person person = new Person();
+
+        //person.Age = 123;
+        //Console.WriteLine(person.Age);
     }
 }
