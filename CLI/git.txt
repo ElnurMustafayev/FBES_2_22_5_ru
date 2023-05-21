@@ -1,0 +1,20 @@
+Steps:
+1. Download Git CLI
+2. Config user.name & user.email:
+	git config --global user.name "Bob777"
+	git config --global user.email "bob@salam.com"
+3. Register user on (Github/Bitbucket/Gitlab)
+4. Auth git (for ex. with Access token for Github)
+
+commands:
+git clone "remote_repo_link"
+git status
+git log
+
+git add test.txt
+git add *.cs
+git add myfolder/test.txt
+git add ../test.txt
+git add .
+
+git commit -m "Commit title"
