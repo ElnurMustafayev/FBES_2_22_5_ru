@@ -7,6 +7,8 @@ Steps:
 4. Auth git (for ex. with Access token for Github)
 
 commands:
+git checkout <commit_id>
+git checkout <branch_name>
 git branch
 git branch -a
 
