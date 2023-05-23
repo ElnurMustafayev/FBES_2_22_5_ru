@@ -7,6 +7,9 @@ Steps:
 4. Auth git (for ex. with Access token for Github)
 
 commands:
+git branch
+git branch -a
+
 git clone "remote_repo_link"
 git status
 git log
@@ -18,3 +21,8 @@ git add ../test.txt
 git add .
 
 git commit -m "Commit title"
+
+git push origin main
+git pull origin main
+
+git reset --hard HEAD^
