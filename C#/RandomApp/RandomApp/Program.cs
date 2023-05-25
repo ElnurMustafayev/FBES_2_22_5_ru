@@ -39,6 +39,10 @@
             //double num = random.NextDouble() * 1000;
 
             //Console.WriteLine(num);
+
+
+            //string id = Guid.NewGuid().ToString();
+            //Console.WriteLine(id);
         }
     }
 }
