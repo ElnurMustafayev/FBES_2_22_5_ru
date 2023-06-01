@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 
 namespace DelegatesApp;
 
@@ -41,6 +42,19 @@ public class Lambdas {
     }
 
     public static void Main() {
+        if(false) {
+            Func<bool> IsCaps = () => Console.CapsLock;
+        }
+
+
+        if(false) {
+            Predicate<double> isPositive = (word) => word > 0;
+
+            Console.WriteLine(isPositive(100));
+            Console.WriteLine(isPositive(-100));
+        }
+
+
         if(false) {
             //Action action1 = () => Console.WriteLine("Hello World");
             //action1.Invoke();
