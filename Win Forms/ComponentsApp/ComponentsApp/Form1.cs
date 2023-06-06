@@ -1,7 +1,15 @@
 namespace ComponentsApp {
+    class User {
+
+    }
+
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
+
+            this.listBox1.Items.Add("test");
+            this.listBox1.Items.Add(new User());
+            this.listBox1.Items.Add("test");
 
             this.ResultTextBox.ReadOnly = true;
 
