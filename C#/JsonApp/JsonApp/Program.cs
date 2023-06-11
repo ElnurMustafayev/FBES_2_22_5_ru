@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Runtime.CompilerServices;
+using System.Text.Json;
 
 namespace JsonApp {
     public class Program {
@@ -11,7 +12,31 @@ namespace JsonApp {
 
         static void Main() {
 
-            if(false) {
+            if(true) {
+                //List<User> users = new List<User>() { 
+                //    new User(),
+                //    new User(),
+                //    new User(),
+                //};
+
+                //var json = JsonSerializer.Serialize(users);
+
+                //Console.WriteLine(json);
+
+                var json = File.ReadAllText("data.json");
+                Console.WriteLine(json);
+
+                var users = JsonSerializer.Deserialize<IEnumerable<User>>(json);
+
+                foreach (var user in users) {
+                    Console.WriteLine(user.FirstName);
+                }
+            }
+
+
+
+
+            if (false) {
                 Teacher teacher = GetJsonObjectFromFile<Teacher>("Teacher.json");
                 Student student = GetJsonObjectFromFile<Student>("Student.json");
 
@@ -52,7 +77,7 @@ Press 2 to show {student.Name}'s marks" + "\n\n\n");
 
 
 
-            if(true) {
+            if(false) {
                 var car = new Car("BMW M5", 320);
                 car.Driver = new User() {
                     FirstName = "Elnur",
