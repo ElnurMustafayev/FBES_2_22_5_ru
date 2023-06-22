@@ -1,0 +1,29 @@
+MainWindow (Source="Resources/MyStyles.xaml")
+[
+
+Resources
+- MyStyles.xaml
+
+
+
+MainWindow.xaml
+
+]
+
+
+
+
+
+
+MainWindow (Source="../Resources/MyStyles.xaml")
+[
+
+Resources
+- MyStyles.xaml
+
+
+Views
+- MainWindow.xaml
+
+]
+

@@ -17,7 +17,7 @@ public class Person {
     public Person Func1() => this;
     public Person? Func2() => null;
 
-    public override string ToString() => $"{Name} {Age}";
+    public override string ToString() => $"*{Name?.ToUpper() ?? "Unknown"}* *{Age ?? -1}*";
 }
 
 public struct Currency {
@@ -36,7 +36,7 @@ public class Program {
         return Random.Shared.Next(0, 2) == 1 ? 123.5 : null;
     }
 
-    public string? GetName() {
+    public static string? GetName() {
         return null;
     }
 
@@ -47,6 +47,32 @@ public class Program {
     }
 
     private static void Main() {
+        //string temp = null;
+        //Console.WriteLine(temp?.ToUpper() ?? "test");
+
+
+        //Person p = new Person() {
+        //    Name = "Elnur",
+        //    Age = null,
+        //};
+
+        //Console.WriteLine(p);
+
+
+
+
+        //string? name = null;
+
+        //string result = name ?? GetName();
+
+        //Console.WriteLine($"Name: {name ?? "Unknown"}");
+
+
+
+
+
+
+
         //Person? person = null;
 
         //Console.WriteLine(person?.Func2().Func1().Func1());
