@@ -1,4 +1,7 @@
-﻿namespace LinqApp;
+﻿using System.Text.Json;
+using System.Xml.Linq;
+
+namespace LinqApp;
 
 public static class MyLinq {
     public static void TestMethod<T>(this T obj) {
@@ -25,9 +28,149 @@ public class Person {
 }
 
 
+
+public enum Gender {
+    Male,
+    Female,
+};
+
+
+public class User {
+    public int id { get; set; }
+    public string name { get; set; }
+    public string surname { get; set; }
+    public Gender gender { get; set; }
+    public DateTime birthdate { get; set; }
+
+    public override string ToString() =>  $"#{id}: {name} {surname}. {gender} {birthdate.ToShortDateString()}";
+}
+
+
+
 public class Program {
     public static void Main() {
+
         if(true) {
+            //IEnumerable<int> nums = new int[] { 1, 2, 6, 7, 9, 3, 4, 5 };
+
+            //var result = nums.Max();
+            //var result = nums.Min();
+            //var result = nums.Average();
+            //var result = nums.Sum();
+            //Console.WriteLine(result);
+
+
+            //IEnumerable<string> names = new List<string> {
+            //    "Elnur", "Emil", "a"
+            //};
+
+            //var result = names.Max();
+            //var result = names.Max();
+            //var result = names.Sum(name => 5);
+            //var result = names.Average(name => name.Length);
+            //Console.WriteLine(result);
+
+
+
+            var json = File.ReadAllText("assets\\People.json");
+            IEnumerable<User> users = JsonSerializer.Deserialize<IEnumerable<User>>(json);
+
+            //var maxBirthDate = users.Min(user => user.birthdate);
+            //Console.WriteLine(maxBirthDate);
+
+            var minBirthDate = users.Min(user => user.birthdate);
+            var oldUser = users.First(user => user.birthdate == minBirthDate);
+
+            Console.WriteLine(oldUser);
+
+        }
+
+        if (false) {
+            //var json = File.ReadAllText("assets\\People.json");
+            //IEnumerable<User> users = JsonSerializer.Deserialize<IEnumerable<User>>(json);
+
+            //var result = users.Append(new User());
+
+            //Console.WriteLine(result.Count());
+
+
+
+            IEnumerable<string> names = new List<string> {
+                "Nijat", "Raul", "Jafar"
+            };
+
+            names = names.Append("Elnur")
+                .Append("Qasim")
+                .Append("Deniz")
+                .Append("Ayxan");
+
+            Console.WriteLine(names.Count());
+
+            foreach (var name in names) {
+                Console.WriteLine(name);
+            }
+        }
+
+
+        if(false) {
+            var json = File.ReadAllText("assets\\People.json");
+            IEnumerable<User> users = JsonSerializer.Deserialize<IEnumerable<User>>(json);
+
+            //var allMale = users.All(user => user.gender == Gender.Male);
+            //var normaleName = users.All(user => string.IsNullOrWhiteSpace(user.name) == false);
+            //Console.WriteLine(normaleName);
+
+            //var containsBob = users.Any(user => user.name.ToLower().Contains("bob"));
+            //var containsElnur = users.Any(user => user.name == "Elnur");
+
+            //Console.WriteLine(containsBob);
+            //Console.WriteLine(containsElnur);
+        }
+
+
+
+        if(false) {
+            //var str = "".ToLower().ToLower().ToLower().Trim().Substring(1)[1..2][2..].Count().ToString();
+
+            var result = new int[] { 1, 2, 3, 4, 5, 6, 7, 9 }
+                .Where(num => num % 2 == 0)
+                .Where(num => num >= 4)
+                .First();
+
+            Console.WriteLine(result);
+        }
+
+
+        if(false) {
+            var json = File.ReadAllText("assets\\People.json");
+            List<User> users = JsonSerializer.Deserialize<List<User>>(json);
+
+
+            IEnumerable<User> result = users.Where(user => {
+                bool isAdults = DateTime.Now.Year - user.birthdate.Year >= 18;
+                bool isLongName = user.name.Length > 10;
+
+                return isAdults && isLongName;
+            });
+
+            foreach (var item in result) {
+                Console.WriteLine(item);
+            }
+
+            //var adultsCount = users.Count(user => DateTime.Now.Year - user.birthdate.Year >= 18);
+            //Console.WriteLine($"Adults: {adultsCount}");
+        }
+
+
+        if (false) {
+            var json = File.ReadAllText("assets\\People.json");
+            List<User> users = JsonSerializer.Deserialize<List<User>>(json);
+
+            Console.WriteLine(users.Count());
+            Console.WriteLine(users.Count);
+        }
+
+        if (false) {
             IEnumerable<Person> people = new List<Person>() {
                 new Person("Bob", "Marley", new DateTime(1965, 7, 7)),
                 new Person("Ann", "Brown", null),
@@ -100,7 +243,7 @@ public class Program {
         }
 
 
-        if(false) {
+        if (false) {
             IEnumerable<string> collection = new string[] {
                 "one", "two", "three"
             };
