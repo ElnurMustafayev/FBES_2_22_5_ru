@@ -47,10 +47,163 @@ public class User {
 
 
 
+
+
+public class Paginator<T> {
+    private IEnumerable<T> items;
+    private const int pageElementsCount = 3;
+    private int itemsCount;
+    private int minPage;
+    private int maxPage;
+    private int currentPage;
+
+    public Paginator(IEnumerable<T> items) {
+        this.items = items;
+
+        this.itemsCount = this.items.Count();
+        this.minPage = 0;
+        this.maxPage = this.itemsCount / pageElementsCount;
+        this.currentPage = this.minPage;
+    }
+
+    public void Draw() {
+        Console.Clear();
+
+        Console.WriteLine();
+        var pageUsers = this.items.Skip(this.currentPage * pageElementsCount).Take(pageElementsCount);
+        foreach (var user in pageUsers) {
+            Console.WriteLine(user);
+        }
+        Console.WriteLine();
+
+        Console.WriteLine($"{this.minPage + 1} ... {this.currentPage + 1} ... {this.maxPage}");
+    }
+
+    public void Input() {
+        var inputKey = Console.ReadKey(true).Key;
+
+        switch (inputKey) {
+            case ConsoleKey.RightArrow:
+                if (this.currentPage + 1 <= this.maxPage - 1)
+                    this.currentPage++;
+                break;
+            case ConsoleKey.LeftArrow:
+                if (this.currentPage - 1 >= this.minPage)
+                    this.currentPage--;
+                break;
+        }
+    }
+}
+
+
+
+
+
 public class Program {
     public static void Main() {
 
-        if(true) {
+        if(false) {
+            int[] nums = new int[] {
+                1,2,3,4,5,6,7,8,9,
+            };
+
+            Paginator<int> paginator = new Paginator<int>(nums);
+
+            while (true) {
+                paginator.Draw();
+                paginator.Input();
+            }
+        }
+
+        if(false) {
+            var json = File.ReadAllText("assets\\People.json");
+            IEnumerable<User>? users = JsonSerializer.Deserialize<IEnumerable<User>>(json);
+
+            if(users != null && users.Any()) {
+                Paginator<User> paginator = new Paginator<User>(users);
+
+                while(true) {
+                    paginator.Draw();
+                    paginator.Input();
+                }
+            }
+        }
+
+        if(false) {
+            var json = File.ReadAllText("assets\\People.json");
+            IEnumerable<User> users = JsonSerializer.Deserialize<IEnumerable<User>>(json);
+
+            const int pageElementsCount = 3;
+            int itemsCount = users.Count();
+            int minPage = 0;
+            int maxPage = itemsCount / pageElementsCount;
+            int currentPage = minPage;
+
+            while (true) {
+                #region DRAW
+
+                Console.Clear();
+
+                Console.WriteLine();
+                var pageUsers = users.Skip(currentPage * pageElementsCount).Take(pageElementsCount);
+                foreach (var user in pageUsers) {
+                    Console.WriteLine(user);
+                }
+                Console.WriteLine();
+
+                Console.WriteLine($"{minPage + 1} ... {currentPage + 1} ... {maxPage}");
+
+                #endregion
+
+
+
+                #region LOGIC
+
+                var inputKey = Console.ReadKey(true).Key;
+
+                switch (inputKey) {
+                    case ConsoleKey.RightArrow:
+                        if(currentPage + 1 <= maxPage - 1)
+                            currentPage++;
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        if(currentPage - 1 >= minPage)
+                            currentPage--;
+                        break;
+                }
+
+                #endregion
+            }
+        }
+
+
+
+        if(false) {
+            var json = File.ReadAllText("assets\\People.json");
+            IEnumerable<User> users = JsonSerializer.Deserialize<IEnumerable<User>>(json);
+
+            //var result = users.TakeLast(10);
+            //var result = users
+            //    .Take(5)
+            //    .TakeLast(3);
+
+            //var result = users.Skip(2)
+            //    .Take(3);
+
+            //var result = users.TakeWhile(u => u.gender == Gender.Female);
+            //var result = users.SkipWhile(u => u.gender == Gender.Female);
+
+            //Console.WriteLine(result.Count());
+            //foreach (var item in result) {
+            //    Console.WriteLine(item);
+            //}
+
+
+            //users
+        }
+
+
+        if(false) {
             //IEnumerable<int> nums = new int[] { 1, 2, 6, 7, 9, 3, 4, 5 };
 
             //var result = nums.Max();
