@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:ContainersApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" ResizeMode="CanResizeWithGrip">
+
     
-    
-    
-    
+
+
     <!--<StackPanel Orientation="Horizontal" Background="red">
 
         <Button Content="One"/>
