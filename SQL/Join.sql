@@ -110,3 +110,36 @@ join ProductStatuses ps on p.StatusId = ps.Id
 select *
 from Products p
 full join ProductStatuses ps on p.StatusId = ps.Id
+
+
+
+
+
+
+
+
+
+
+create table Shop(
+	[Id] int primary key identity,
+	[Name] nvarchar(20)
+)
+
+create table Products(
+	[Id] int primary key identity,
+	[Name] nvarchar(20),
+	[ShopId] int foreign key references Shop([Id])
+)
+
+insert into Shop([Name])
+values('Maxi.az'),('Kontakt Home'),('ISpace')
+
+insert into Products([Name], [ShopId])
+values('Bob', null), ('Iphone', 3),('Tv', 2),('PC', 2)
+
+select *
+from Products p
+--inner join Shop s on p.ShopId = s.Id
+--full join Shop s on p.ShopId = s.Id
+--left join Shop s on p.ShopId = s.Id
+right join Shop s on p.ShopId = s.Id
