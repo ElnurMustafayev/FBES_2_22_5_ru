@@ -1,0 +1,7 @@
+dotnet
+dotnet new
+dotnet new console
+
+dotnet run
+
+dotnet add package {packageName}
