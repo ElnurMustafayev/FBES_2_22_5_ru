@@ -5,8 +5,6 @@ using System.Data.SqlClient;
 
 
 
-
-
 const string connectionString = $"Server=localhost;Database=TestDb;User Id=admin;Password=admin;";
 
 using var sqlConnection = new SqlConnection(connectionString);
@@ -18,13 +16,30 @@ string name = Console.ReadLine();
 Console.Write("Age: ");
 int age = int.TryParse(Console.ReadLine(), out int ageInput) ? ageInput : -1;
 
+// SOLUTION
+if(true)
+{
+    var command = new SqlCommand(
+        cmdText: @$"insert into Users(Name, Age) 
+                    values(@name, @age)",
+        sqlConnection);
 
-var command = new SqlCommand(
-    cmdText: @$"insert into Users(Name, Age) 
-                values('{name}', {age})",
-    sqlConnection);
+    command.Parameters.Add(new SqlParameter("name", name));
+    command.Parameters.Add(new SqlParameter("age", age));
 
-command.ExecuteNonQuery();
+    command.ExecuteNonQuery();
+}
+
+// SQL INJECTION
+if(false)
+{
+    var command = new SqlCommand(
+        cmdText: @$"insert into Users(Name, Age) 
+                    values('{name}', {age})",
+        sqlConnection);
+
+    command.ExecuteNonQuery();
+}
 
 /*
 const string connectionString = $"Server=localhost;Database=TestDb;User Id=admin;Password=admin;";
@@ -47,3 +62,11 @@ foreach (var user in users)
 }
 
 */
+
+
+// 1. create entity
+// 2. create repository class for entity
+// 3. create method in repository: GetById(int id) 
+
+
+// command.Parameters.Add(new SqlParameter("name", name));

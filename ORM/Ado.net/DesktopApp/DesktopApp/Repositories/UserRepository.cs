@@ -1,7 +1,9 @@
-namespace ParametersApp.Repositories;
+namespace DesktopApp.Repositories;
 
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
-using ParametersApp.Entities;
+using DesktopApp.Entities;
 
 public class UserRepository {
     private SqlConnection sqlConnection;
