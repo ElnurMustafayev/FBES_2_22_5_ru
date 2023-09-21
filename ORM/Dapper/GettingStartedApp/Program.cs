@@ -19,7 +19,8 @@ if(true)
 {
     ProductRepository productRepository = new ProductRepository(connectionString);
 
-    var product = productRepository.GetById(1);
+    //var product = productRepository.GetById(1);
+    var product = productRepository.GetByName(name: "IPhone");
 
     Console.WriteLine(product);
 }

@@ -26,5 +26,12 @@ namespace GettingStartedApp.Repositories
                 sql: "select * from Products p where p.Id = @Id", 
                 param: new ProductQueryParameters { Id = id });
         }
+
+        public Product GetByName(string name)
+        {
+            return this.sqlConnection.QueryFirst<Product>(
+                sql: "select * from Products p where p.Name = @Name", 
+                param: new { Name = name });
+        }
     }
 }
