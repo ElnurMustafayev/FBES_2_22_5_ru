@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="MvvmApp.Views.AddProductView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MvvmApp.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="700" d:DesignWidth="430" Background="Yellow">
+    <DockPanel>
+        <Button Content="Create" DockPanel.Dock="Bottom" Command="{Binding AddProductCommand}"/>
+
+        <StackPanel>
+
+            <DockPanel Margin="0 20">
+                <Label Content="Name:"/>
+                <TextBox Text="{Binding Name}"/>
+            </DockPanel>
+
+            <DockPanel Margin="0 20">
+                <Label Content="Price:"/>
+                <TextBox Text="{Binding Price}"/>
+            </DockPanel>
+
+            <DockPanel Margin="0 20">
+                <Label Content="Status:"/>
+                <ComboBox SelectedItem="{Binding SelectedProductStatus}" ItemsSource="{Binding ProductStatuses}">
+
+                </ComboBox>
+            </DockPanel>
+        </StackPanel>
+
+    </DockPanel>
+    
+    
+
+</UserControl>

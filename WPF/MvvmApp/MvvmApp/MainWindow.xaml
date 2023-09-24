@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MvvmApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="450">
-    <StackPanel>
+        Title="MainWindow" Height="800" Width="450" FontSize="24">
+    <DockPanel Background="#FFC3C3C3">
 
-        <ContentControl Content="{Binding ActiveViewModel}" Height="500">
+        <UniformGrid Margin="10" DockPanel.Dock="Bottom" Columns="3" Height="50">
+            <Button Content="All" Click="AllClick"/>
+            <Button Content="Home" Click="HomeClick"/>
+            <Button Content="Add" Click="AddClick"/>
+        </UniformGrid>
+
+        <ContentControl Margin="10" DockPanel.Dock="Top" Content="{Binding ActiveViewModel}">
             
         </ContentControl>
 
-        <Button Content="Change" Click="Button_Click"/>
-
-    </StackPanel>
+    </DockPanel>
 </Window>

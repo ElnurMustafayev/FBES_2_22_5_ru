@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MvvmApp.Views
 {
     /// <summary>
-    /// Interaction logic for AppProductView.xaml
+    /// Interaction logic for AllProductsView.xaml
     /// </summary>
-    public partial class AppProductView : UserControl
+    public partial class AllProductsView : UserControl
     {
-        public AppProductView()
+        public AllProductsView()
         {
             InitializeComponent();
         }

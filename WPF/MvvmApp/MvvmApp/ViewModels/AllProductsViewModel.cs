@@ -2,7 +2,7 @@
 
 namespace MvvmApp.ViewModels
 {
-    public class HomeViewModel : ViewModelBase
+    public class AllProductsViewModel : ViewModelBase
     {
-	}
+    }
 }

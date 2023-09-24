@@ -12,7 +12,11 @@
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type vm:AddProductViewModel}">
-            <v:AppProductView/>
+            <v:AddProductView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:AllProductsViewModel}">
+            <v:AllProductsView/>
         </DataTemplate>
 
     </Application.Resources>
