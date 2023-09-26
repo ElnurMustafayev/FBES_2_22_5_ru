@@ -9,14 +9,13 @@
     <DockPanel Background="#FFC3C3C3">
 
         <UniformGrid Margin="10" DockPanel.Dock="Bottom" Columns="3" Height="50">
-            <Button Content="All" Click="AllClick"/>
-            <Button Content="Home" Click="HomeClick"/>
-            <Button Content="Add" Click="AddClick"/>
+            <Button Content="All" Command="{Binding AllCommand}"/>
+            <Button Content="Home" Command="{Binding HomeCommand}"/>
+            <Button Content="Add" Command="{Binding AddCommand}"/>
         </UniformGrid>
 
         <ContentControl Margin="10" DockPanel.Dock="Top" Content="{Binding ActiveViewModel}">
             
         </ContentControl>
-
     </DockPanel>
 </Window>

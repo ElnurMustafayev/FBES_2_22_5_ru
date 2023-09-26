@@ -8,7 +8,10 @@ namespace MvvmApp.Commands.Base
         private readonly Action execute;
         private readonly Func<bool> canExecute;
 
-        public event EventHandler? CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
 
         public CommandBase(Action execute, Func<bool> canExecute)
         {

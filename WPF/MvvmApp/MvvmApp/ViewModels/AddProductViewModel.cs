@@ -2,22 +2,27 @@
 using MvvmApp.Commands.Base;
 using MvvmApp.Models;
 using MvvmApp.Repositories;
+using MvvmApp.Repositories.Base;
 using MvvmApp.ViewModels.Base;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading;
+using System.Windows;
 
 namespace MvvmApp.ViewModels
 {
     public class AddProductViewModel : ViewModelBase
     {
+        private readonly IProductRepository productRepository;
+        private readonly IProductStatusRepository productStatusRepository;
+
         public ObservableCollection<ProductStatus> ProductStatuses { get; set; }
 
 
 
-        private decimal price;
+        private decimal? price;
 
-        public decimal Price
+        public decimal? Price
         {
             get => price;
             set => base.PropertyChangeMethod(out price, value);
@@ -37,8 +42,8 @@ namespace MvvmApp.ViewModels
 
 
 
-        private ProductStatus selectedProductStatus;
-        public ProductStatus SelectedProductStatus
+        private ProductStatus? selectedProductStatus;
+        public ProductStatus? SelectedProductStatus
         {
             get { return selectedProductStatus; }
             set { base.PropertyChangeMethod(out selectedProductStatus, value); }
@@ -47,40 +52,41 @@ namespace MvvmApp.ViewModels
 
 
 
-        private CommandBase addProductCommand;
-        public CommandBase AddProductCommand
-        {
-            get
-            {
-                if (addProductCommand == null)
-                    addProductCommand = new CommandBase(
-                        execute: () =>
+        private CommandBase? addProductCommand;
+        public CommandBase AddProductCommand => this.addProductCommand ??= new CommandBase(
+                execute: () =>
+                {
+                    try
+                    {
+                        this.productRepository.Create(new Product()
                         {
-                            var productRepository = new ProductRepository();
-                            productRepository.Create(new Product()
-                            {
-                                Name = this.Name,
-                                Price = this.Price,
-                                Status = this.SelectedProductStatus?.Id
-                            });
-                        },
-                        canExecute: () => true
-                    );
+                            Name = this.Name,
+                            Price = this.Price,
+                            Status = this.SelectedProductStatus?.Id
+                        });
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.Message}");
+                    }
 
-                return addProductCommand;
-            }
-        }
+                    this.Name = string.Empty;
+                    this.Price = null;
+                    this.SelectedProductStatus = null;
+
+                    MessageBox.Show($"Success!");
+                },
+                canExecute: () => true
+            );
 
 
-        public AddProductViewModel()
+        public AddProductViewModel(IProductRepository productRepository, IProductStatusRepository productStatusRepository)
         {
-            var productStatusRepository = new ProductStatusRepository();
+            this.productRepository = productRepository;
+            this.productStatusRepository = productStatusRepository;
 
-            var allProductStatuses = productStatusRepository.GetAll();
-
+            var allProductStatuses = this.productStatusRepository.GetAll();
             this.ProductStatuses = new ObservableCollection<ProductStatus>(allProductStatuses);
         }
-
-
     }
 }

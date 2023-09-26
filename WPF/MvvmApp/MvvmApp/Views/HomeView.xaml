@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MvvmApp.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="430" Background="Red">
+             d:DesignHeight="700" d:DesignWidth="430" Background="White">
     <StackPanel>
 
     </StackPanel>

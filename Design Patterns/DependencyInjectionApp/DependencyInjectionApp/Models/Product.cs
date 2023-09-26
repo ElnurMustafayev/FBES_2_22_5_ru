@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MvvmApp.Models
+namespace DependencyInjectionApp.Models
 {
     public class Product
     {

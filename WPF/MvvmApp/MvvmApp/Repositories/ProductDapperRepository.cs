@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using MvvmApp.Models;
+using MvvmApp.Repositories.Base;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -9,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace MvvmApp.Repositories
 {
-    public class ProductRepository
+    public class ProductDapperRepository : IProductRepository
     {
         private const string connectionString = $"Server=localhost;Database=StorageDb;User Id=admin;Password=admin;";
         private readonly SqlConnection sqlConnection;
 
-        public ProductRepository()
+        public ProductDapperRepository()
         {
             this.sqlConnection = new SqlConnection(connectionString);
             this.sqlConnection.Open();
@@ -22,6 +23,7 @@ namespace MvvmApp.Repositories
 
         public IEnumerable<Product> GetAll()
         {
+            //return this.sqlConnection.Query<Product>(sql: "SELECT CAST([Id] AS nvarchar(36)) as 'Id',[Name],[Price],[Status] FROM Products");
             return this.sqlConnection.Query<Product>(sql: "select * from Products");
         }
 

@@ -6,7 +6,18 @@
              xmlns:local="clr-namespace:MvvmApp.Views"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="430" Background="Green">
-    <StackPanel>
-
-    </StackPanel>
+    <Grid>
+        <ListView ItemsSource="{Binding Products}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Id}"/>
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding Price}"/>
+                        <TextBlock Text="{Binding Status}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </UserControl>

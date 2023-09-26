@@ -1,16 +1,17 @@
-﻿using MvvmApp.Models;
+﻿using DependencyInjectionApp.Models;
 using Dapper;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using DependencyInjectionApp.Repositories.Base;
 
-namespace MvvmApp.Repositories
+namespace DependencyInjectionApp.Repositories
 {
-    public class ProductStatusRepository
+    public class ProductStatusDapperRepository : IProductStatusRepository
     {
         private const string connectionString = $"Server=localhost;Database=StorageDb;User Id=admin;Password=admin;";
         private readonly SqlConnection sqlConnection;
 
-        public ProductStatusRepository()
+        public ProductStatusDapperRepository()
         {
             this.sqlConnection = new SqlConnection(connectionString);
             this.sqlConnection.Open();

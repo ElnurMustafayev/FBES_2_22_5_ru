@@ -24,7 +24,7 @@ namespace MvvmApp.Commands
         public void Execute(object? parameter)
         {
             Console.WriteLine("Command Execute");
-            //new ProductRepository().Create(this.product);
+            //new ProductDapperRepository().Create(this.product);
         }
     }
 }
