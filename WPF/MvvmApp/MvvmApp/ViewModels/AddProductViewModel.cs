@@ -52,6 +52,16 @@ namespace MvvmApp.ViewModels
             set { base.PropertyChangeMethod(out selectedProductStatus, value); }
         }
 
+        private CommandBase testCommand;
+
+        public CommandBase TestCommand => testCommand ??= new CommandBase(
+            execute: () =>
+            {
+                Console.WriteLine("TestCommand!");
+            }, 
+            canExecute: () => true);
+
+
 
 
 

@@ -9,6 +9,7 @@ namespace MvvmApp.ViewModels
     public class MainViewModel : ViewModelBase
     {
         #region Fields
+        private bool flag = false;
         private readonly IMessenger messenger;
 
 
@@ -26,7 +27,10 @@ namespace MvvmApp.ViewModels
 
         private CommandBase homeCommand;
         public CommandBase HomeCommand => this.homeCommand ??= new CommandBase(
-            execute: () => this.ActiveViewModel = App.Container.GetInstance<HomeViewModel>(),
+            execute: () => {
+                this.ActiveViewModel = App.Container.GetInstance<HomeViewModel>();
+                this.flag = !this.flag;
+                },
             canExecute: () => true);
 
         private CommandBase addCommand;
@@ -37,7 +41,7 @@ namespace MvvmApp.ViewModels
         private CommandBase allCommand;
         public CommandBase AllCommand => this.allCommand ??= new CommandBase(
             execute: () => this.ActiveViewModel = App.Container.GetInstance<AllProductsViewModel>(),
-            canExecute: () => true);
+            canExecute: () => this.flag);
 
         #endregion
 
