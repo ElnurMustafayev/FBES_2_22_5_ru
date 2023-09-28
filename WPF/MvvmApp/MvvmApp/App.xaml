@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MvvmApp"
              xmlns:vm="clr-namespace:MvvmApp.ViewModels"
-             xmlns:v="clr-namespace:MvvmApp.Views"
-             StartupUri="MainWindow.xaml">
+             xmlns:v="clr-namespace:MvvmApp.Views">
     <Application.Resources>
 
         <DataTemplate DataType="{x:Type vm:HomeViewModel}">

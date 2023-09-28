@@ -24,8 +24,6 @@ namespace MvvmApp.Views
         public HomeView()
         {
             InitializeComponent();
-
-            this.DataContext = new HomeViewModel();
         }
     }
 }

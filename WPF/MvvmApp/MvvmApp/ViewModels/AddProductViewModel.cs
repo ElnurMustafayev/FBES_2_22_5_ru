@@ -1,5 +1,7 @@
 ﻿using MvvmApp.Commands;
 using MvvmApp.Commands.Base;
+using MvvmApp.Mediator.Base;
+using MvvmApp.Messages;
 using MvvmApp.Models;
 using MvvmApp.Repositories;
 using MvvmApp.Repositories.Base;
@@ -15,6 +17,7 @@ namespace MvvmApp.ViewModels
     {
         private readonly IProductRepository productRepository;
         private readonly IProductStatusRepository productStatusRepository;
+        private readonly IMessenger messenger;
 
         public ObservableCollection<ProductStatus> ProductStatuses { get; set; }
 
@@ -74,16 +77,19 @@ namespace MvvmApp.ViewModels
                     this.Price = null;
                     this.SelectedProductStatus = null;
 
-                    MessageBox.Show($"Success!");
+                    //App.Container.GetInstance<MainViewModel>().ActiveViewModel = App.Container.GetInstance<AllProductsViewModel>();
+
+                    this.messenger.Send(new NavigationMessage(App.Container.GetInstance<AllProductsViewModel>()));
                 },
                 canExecute: () => true
             );
 
 
-        public AddProductViewModel(IProductRepository productRepository, IProductStatusRepository productStatusRepository)
+        public AddProductViewModel(IProductRepository productRepository, IProductStatusRepository productStatusRepository, IMessenger messenger)
         {
             this.productRepository = productRepository;
             this.productStatusRepository = productStatusRepository;
+            this.messenger = messenger;
 
             var allProductStatuses = this.productStatusRepository.GetAll();
             this.ProductStatuses = new ObservableCollection<ProductStatus>(allProductStatuses);

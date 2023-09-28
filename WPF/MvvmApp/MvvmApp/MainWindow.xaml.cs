@@ -8,11 +8,6 @@ namespace MvvmApp
         public MainWindow()
         {
             InitializeComponent();
-
-            var viewModel = new MainViewModel();
-            viewModel.ActiveViewModel = new HomeViewModel();
-
-            this.DataContext = viewModel;
         }
     }
 }

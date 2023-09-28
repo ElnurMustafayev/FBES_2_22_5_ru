@@ -1,4 +1,6 @@
 ﻿using MvvmApp.Commands.Base;
+using MvvmApp.Mediator.Base;
+using MvvmApp.Messages;
 using MvvmApp.Repositories;
 using MvvmApp.ViewModels.Base;
 
@@ -7,6 +9,9 @@ namespace MvvmApp.ViewModels
     public class MainViewModel : ViewModelBase
     {
         #region Fields
+        private readonly IMessenger messenger;
+
+
         private ViewModelBase activeViewModel;
 
         public ViewModelBase ActiveViewModel
@@ -35,5 +40,20 @@ namespace MvvmApp.ViewModels
             canExecute: () => true);
 
         #endregion
+
+        public MainViewModel(IMessenger messenger)
+        {
+            this.messenger = messenger;
+
+
+
+            this.messenger.Subscribe<NavigationMessage>((message) =>
+            {
+                if(message is NavigationMessage navigationMessage)
+                {
+                    this.ActiveViewModel = navigationMessage.DestinationViewModel;
+                }
+            });
+        }
     }
 }
