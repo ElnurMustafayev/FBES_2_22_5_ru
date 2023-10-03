@@ -7,6 +7,9 @@
 
 using GettingStartedApp;
 using GettingStartedApp.Entities;
+using GettingStartedApp.Repositories;
+using GettingStartedApp.Repositories.Base;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Diagnostics;
 
 var context = new MyDbContext();
@@ -26,7 +29,7 @@ var context = new MyDbContext();
 
 
 // select
-if (true)
+if (false)
 {
     //foreach (var user in context.Users)
     //{
@@ -50,9 +53,6 @@ if (true)
     stopWatch.Stop();
 }
 
-
-
-
 // insert 
 if (false)
 {
@@ -68,7 +68,83 @@ if (false)
     newUser.IsMarried = Console.ReadLine() == "y";
 
 
-    context.Users.Add(newUser);
+    EntityEntry<User> result = context.Users.Add(newUser);
 
     context.SaveChanges();
+
+    Console.WriteLine(newUser);
 }
+
+// update
+if (false)
+{
+    var user = context.Users.First(u => u.Id == 5);
+
+    user.Name = "Bob";
+    user.Surname = "Marley";
+
+    var result = context.Users.Update(user);
+    context.SaveChanges();
+    Console.WriteLine(result.Entity);
+}
+
+// delete
+if(false)
+{
+    context.Users.Remove(new User
+    {
+        Id = 5
+    });
+    context.SaveChanges();
+}
+
+// repo
+if(false)
+{
+    IUserRepository userRepository = new UserEfCoreRepository();
+
+    userRepository = new UserDapperRepository();
+    // delete
+    if (true)
+    {
+        userRepository.Delete(4);
+    }
+
+    // update
+    if(false)
+    {
+        var user = new User
+        {
+            Name = "Elnur",
+            Surname = "Mustafayev",
+        };
+        userRepository.Update(5, user);
+    }
+
+    // create
+    if(false)
+    {
+        var created = userRepository.Create(new User
+        {
+            Name = "Bob",
+            Surname = "Marley",
+            Age = 64,
+            IsMarried = false,
+        });
+
+        Console.WriteLine(created);
+    }
+
+
+    // get
+    if (false)
+    {
+        var users = userRepository.GetAll();
+
+        foreach (var user in users)
+        {
+            Console.WriteLine(user);
+        }
+    }
+}
+
