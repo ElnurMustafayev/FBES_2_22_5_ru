@@ -3,16 +3,25 @@
 using Microsoft.EntityFrameworkCore;
 using RelationsApp.Data.Configurations;
 using RelationsApp.Entities;
+using RelationsApp.Entities.ManyToMany;
 using RelationsApp.Entities.OneToMany;
 
 public class MyDbContext : DbContext
 {
     private const string connectionString = "Server=localhost;Database=MyDatabase;User Id=admin;Password=admin;TrustServerCertificate=True";
+    
+    // 1 - 1
     public DbSet<User> Users { get; set; }
     public DbSet<Country> Countries { get; set; }
 
+    // 1 - M
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Post> Posts { get; set; }
+
+    // M - M
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Group> Groups { get; set; }
+    public DbSet<StudentGroup> StudentGroups { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
