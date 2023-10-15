@@ -89,5 +89,7 @@ public class Program {
         //    }
         //    catch { }
         //}
+
+        //Process.Start("ping.exe", "8.8.8.8");
     }
 }
