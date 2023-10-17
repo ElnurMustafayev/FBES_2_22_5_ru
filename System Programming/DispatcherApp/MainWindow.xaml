@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
         <ProgressBar x:Name="MyProgressBar" DockPanel.Dock="Top" Height="30"/>
+        <Button Content="Click" DockPanel.Dock="Top" Click="Button_Click"/>
         <ListView x:Name="ProcessesListView">
             
         </ListView>

@@ -35,13 +35,13 @@ namespace DispatcherApp
 
             //this.RefreshProcesses();
 
-            this.timer = new Timer(
-                callback: (obj) => {
-                    Dispatcher.Invoke(() => {
-                        this.MyProgressBar.Value++;
-                    });
-                },
-                null, 1000, 100);
+            //this.timer = new Timer(
+            //    callback: (obj) => {
+            //        Dispatcher.Invoke(() => {
+            //            this.MyProgressBar.Value++;
+            //        });
+            //    },
+            //    null, 1000, 100);
         }
 
         private void RefreshProcesses()
@@ -59,6 +59,20 @@ namespace DispatcherApp
 
                 this.ProcessesListView.Items.Add(processInfo);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new Thread(() =>
+            {
+                Thread.Sleep(2000); // hard work for 2 sec
+
+                Dispatcher.Invoke(() => this.MyProgressBar.Value = 50);
+
+                Thread.Sleep(3000); // hard work for 3 sec
+
+                Dispatcher.Invoke(() => this.MyProgressBar.Value = 100);
+            }).Start();
         }
     }
 }
