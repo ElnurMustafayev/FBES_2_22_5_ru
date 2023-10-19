@@ -1,10 +1,55 @@
 ﻿namespace ThreadsApp;
 
+using Dapper;
+using System.Data.SqlClient;
 using System.Threading;
+using System.Xml.Linq;
 
 public class Program {
+
+    static Thread InsertProductAsync(string productName, CancellationToken? token = null)
+    {
+        var thread = new Thread(() =>
+        {
+            Predicate<CancellationToken?> IsTokenCanceled = (tkn) => tkn != null && tkn.Value.IsCancellationRequested;
+
+            if (IsTokenCanceled(token))
+                return;
+
+            const string connectionString = $"Server=localhost;Database=TestDb;User Id=admin;Password=admin;";
+            using var sqlConnection = new SqlConnection(connectionString);
+            sqlConnection.Open();
+            string sql = "insert into Products([Name]) values (@Name)";
+            int rowsCount = sqlConnection.Execute(sql, new { Name = productName });
+
+            if (IsTokenCanceled(token))
+                return;
+
+            Thread.Sleep(1000);
+            Console.WriteLine($"Insert {(rowsCount > 0 ? "Success" : "error")}");
+        });
+
+        thread.Start();
+
+        return thread;
+    }
+
     static void Main() {
         if (true)
+        {
+            CancellationTokenSource tokenSource = new CancellationTokenSource();
+            while (true)
+            {
+                InsertProductAsync(Guid.NewGuid().ToString(), tokenSource.Token);
+
+                tokenSource.Cancel();
+
+                Thread.Sleep(10);
+                Console.WriteLine("main");
+            }
+        }
+
+        if (false)
         {
             Thread thread1 = new Thread(() =>
             {
