@@ -17,6 +17,18 @@ var context = new MyDbContext();
 //context.Database.EnsureCreated();
 
 
+var entry = await context.Users.AddAsync(new User()
+{
+    Name = "Emil",
+    Surname = "Babayev",
+});
+
+await context.SaveChangesAsync();
+
+Console.WriteLine(entry.Entity.Id);
+
+
+
 
 //var result = context.Users.Count(u => u.Surname.ToLower() == "marley");
 //Console.WriteLine(result);

@@ -1,5 +1,11 @@
 ﻿namespace AsyncAwaitApp;
 
+public class User
+{
+    public string Name { get; set; }
+    public string Surname { get; set; }
+}
+
 public class Program
 {
     public static Task MyMethodAsync()
@@ -52,15 +58,60 @@ public class Program
         Console.WriteLine("end");
     }
 
-    public static async Task Main()
+    public static async Task<User> FuncWithReturn()
     {
-        AsyncFunc();
+        //return await Task.Run<User>(() =>
+        //{
+        //    Thread.Sleep(1000);
 
-        while(true)
+        //    return new User()
+        //    {
+        //        Name = "Elnur",
+        //        Surname = "Mustafayev",
+        //    };
+        //});
+
+        await Task.Delay(1000);
+
+        return new User()
         {
-            Thread.Sleep(200);
-            Console.WriteLine("Main");
+            Name = "Elnur",
+            Surname = "Mustafayev",
+        };
+    }
+
+    public static async void PrintUserName()
+    {
+        var result = await FuncWithReturn();
+
+        Console.WriteLine(result.Name);
+    }
+
+    public static void Main()
+    {
+        PrintUserName();
+
+        for (int i = 0; ;i++)
+        {
+            Thread.Sleep(100);
+            Console.WriteLine(i);
         }
+
+        //var res1 = FuncWithReturn().Result;
+        //var res2 = await FuncWithReturn();
+
+
+        //var obj = await FuncWithReturn();
+
+        //var obj = await FuncWithReturn();
+
+        //AsyncFunc();
+
+        //while(true)
+        //{
+        //    Thread.Sleep(200);
+        //    Console.WriteLine("Main");
+        //}
 
 
 
