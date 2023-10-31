@@ -1,5 +1,6 @@
 dotnet
 dotnet new
+dotnet new sln --name "{SolutionName}"
 dotnet new console
 
 dotnet run
