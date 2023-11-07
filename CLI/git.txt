@@ -14,6 +14,7 @@ git branch -a
 
 git clone "remote_repo_link"
 git status
+git status -s
 git log
 
 git add test.txt
@@ -23,8 +24,22 @@ git add ../test.txt
 git add .
 
 git commit -m "Commit title"
+git commit -a -m "Commit title" -m "Commit Description"
 
 git push origin main
 git pull origin main
 
 git reset --hard HEAD^
+
+git log --graph --decorate
+git merge <dest_branch>
+
+
+
+git init
+echo "# CommandWork" >> README.md
+git branch -M main
+git remote get-url origin
+git remote set-url origin
+git restore .
+git push origin -d nijat
