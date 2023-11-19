@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using ServerApp.Models;
+using SharedLib.Models;
 
 
 static string GetHtml<T>(IEnumerable<T> collection)
@@ -42,6 +42,12 @@ System.Console.WriteLine($"Server started on '{port}' port");
 while (true)
 {
     var context = await httpListener.GetContextAsync();
+
+    // if(context.Request.QueryString is not null) {
+    //     System.Console.WriteLine(context.Request.QueryString["name"]);
+    //     System.Console.WriteLine(context.Request.QueryString["age"]);
+    // }
+    
     var rawUrl = context.Request.RawUrl.Trim('/').ToLower();
     using var writer = new StreamWriter(context.Response.OutputStream);
     var rawItems = rawUrl.Split('/');
@@ -113,8 +119,6 @@ while (true)
         await writer.WriteLineAsync("Not Found 404!");
     }
 }
-
-
 
 /*
 while(true) {

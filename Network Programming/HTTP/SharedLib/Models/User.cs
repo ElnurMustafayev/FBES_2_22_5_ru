@@ -1,4 +1,4 @@
-namespace ServerApp.Models;
+namespace SharedLib.Models;
 
 public class User
 {
