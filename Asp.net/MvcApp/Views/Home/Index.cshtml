@@ -1,8 +1,57 @@
 ﻿@{
+    // AspNetCoreGeneratedDocument.Views_Home_Index
+    //System.Console.WriteLine(this.GetType().FullName);
+
     ViewData["Title"] = "Home Page";
+
+    @* System.Console.WriteLine($"Index.cshtml {this.ViewData.GetHashCode()}"); *@
+
+    var num = Random.Shared.Next(10);
+    var name = "Elnur";
+
+    int GetLength(string word) {
+        return word.Length;
+    }
+
+    string[] classes = {
+        "warning",
+        "danger",
+        "info",
+        "success"
+    };
+}
+
+@{
+    @* System.Console.WriteLine(num); *@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome, @name.ToUpper() </h1>
+
+    @foreach (var item in classes)
+    {
+        <h2>@(item.Length > 5 ? "> 5" : "< 5")</h2>
+        <button class="btn btn-@item">Click me!</button>
+        <br/>
+    }
+
+    @* @foreach (char item in "verylongword")
+    {
+        <@item>test</@item>
+        <span>@item</span>
+        <span>*</span>
+    } *@
+
+
+    @* <h2>@Math.Pow(GetLength("TEST"), 5)</h2>
+    <h2>@GetLength("TEST")</h2> *@
+
+    @* @if(num >= 5) {
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    }
+    else {
+        <h2>Test</h2>
+    } *@
 </div>
