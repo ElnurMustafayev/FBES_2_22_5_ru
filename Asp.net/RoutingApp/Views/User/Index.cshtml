@@ -1,0 +1,49 @@
+@using System.Text.Json
+
+@{
+    var usersJson = await System.IO.File.ReadAllTextAsync("Assets/users.json");
+
+    var users = JsonSerializer.Deserialize<IEnumerable<User>>(usersJson, new JsonSerializerOptions {
+        PropertyNameCaseInsensitive = true,
+    });
+}
+
+<style>
+    form {
+        margin: 20px;
+    }
+
+    form > * {
+        display: block;
+        margin: 10px 0;
+    }
+</style>
+
+
+<h2>Create new User</h2>
+<form action="/User" method="post">
+    <label>
+        Name:
+        <input type="text" name="Name">
+    </label>
+
+    <label>
+        Surname:
+        <input type="text" name="Surname">
+    </label>
+
+    <button>Create</button>
+</form>
+
+<h2>All Users</h2>
+<div>
+    @foreach (var user in users)
+    {
+        <p>Name: @(user?.Name ?? "UNKNOWN")</p>
+        <p>Surname: @(user?.Surname ?? "UNKNOWN")</p>
+        @if(user.IsMarried is not null) {
+            <p>Status: @((bool)user.IsMarried ? "Married" : "Single")</p>
+        }
+        <hr>
+    }
+</div>
