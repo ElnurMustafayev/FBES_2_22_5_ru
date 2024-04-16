@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+    string? name;
+
+    if(ViewData.TryGetValue("name", out object nameObj) && nameObj is string) {
+        name = nameObj as string;
+    }
+}
+
+<div class="text-center">
+    @* <h1 class="display-4">Welcome, @base.ViewBag.Name</h1> *@
+
+    @* <h1 class="display-4">Welcome, @base.ViewData["name"]</h1>
+    <h1 class="display-4">Welcome, @nameObj</h1>
+    <h1 class="display-4">Welcome, @name</h1> *@
+
+
+</div>
