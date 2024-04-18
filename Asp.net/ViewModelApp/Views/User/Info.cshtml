@@ -1,0 +1,28 @@
+@model User
+
+@{
+    ViewData["Title"] = "Info";
+
+/*
+    User? user = null;
+    var userObject = base.ViewData["user"];
+    if(userObject is User)
+        user = userObject as User;
+*/
+}
+
+<div>
+    <label>
+        Name: 
+        <input type="text" value="@base.Model.Name?.ToUpper()" readonly>
+        @* <input type="text" value="@user?.Name?.ToUpper()" readonly> *@
+    </label>
+
+    <br>
+
+    <label>
+        Surname: 
+        <input type="text" value="@base.Model.Surname?.ToUpper()" readonly>
+        @* <input type="text" value="@user?.Surname?.ToUpper()" readonly> *@
+    </label>
+</div>

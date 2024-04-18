@@ -6,14 +6,18 @@
     if(ViewData.TryGetValue("name", out object nameObj) && nameObj is string) {
         name = nameObj as string;
     }
+
+    @* var avatarInBytes = File.ReadAllBytes("./wwwroot/avatars/test.png"); *@
 }
 
 <div class="text-center">
+    @* <img src="http://localhost:5198/avatars/test.png" alt="avatar"> *@
+    @* <img src="C:/ProgramFiles/avatars/test.png" alt="avatar">
+    <h2>@avatarInBytes.Count()</h2> *@
+
     @* <h1 class="display-4">Welcome, @base.ViewBag.Name</h1> *@
 
     @* <h1 class="display-4">Welcome, @base.ViewData["name"]</h1>
     <h1 class="display-4">Welcome, @nameObj</h1>
     <h1 class="display-4">Welcome, @name</h1> *@
-
-
 </div>

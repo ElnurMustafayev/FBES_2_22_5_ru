@@ -12,17 +12,3 @@ public class HomeController : Controller
         return base.View();
     }
 }
-
-
-
-// // GET: /User/Info
-// // Storage: /Asserts/user.json
-
-// {
-//     "name": "Bob",
-//     "surname": "Marley",
-// }
-
-// <label> <input:text readonly> </label>
-// Name: BOB
-// Surname: MARLEY
