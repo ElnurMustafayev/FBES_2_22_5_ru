@@ -1,0 +1,31 @@
+@model IEnumerable<Product>?
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>Products</h1>
+
+@if(Model == null || Model.Any() == false) {
+    <div class="alert alert-primary" role="alert">
+        There are no products yet...
+    </div>
+}
+else {
+    foreach (var product in Model)
+    {
+        <div class="card w-50 my-2">
+            <div class="card-body">
+                <h5 class="card-title">@product.Name</h5>
+                @if(product.InStock.GetValueOrDefault(false)) {
+                    @* TODO: proceed discount *@
+                    <p class="card-text">@product.PriceWithDiscount $</p>
+                    <a href="#" class="btn btn-primary">Button</a>
+                }
+                else {
+                    <p class="card-text text-danger">Out of stock</p>
+                }
+            </div>
+        </div>
+    }
+}
