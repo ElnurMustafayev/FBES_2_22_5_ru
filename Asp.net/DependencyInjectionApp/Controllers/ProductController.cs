@@ -19,7 +19,7 @@ public class ProductController : Controller
         this.productService = productService;
     }
 
-    [HttpGet]
+    [HttpGet("api/[controller]")]
     public async Task<IActionResult> Index() {
         var products = await productRepository.GetAllAsync();
 

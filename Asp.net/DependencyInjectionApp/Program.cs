@@ -1,3 +1,4 @@
+using DependencyInjectionApp.Controllers;
 using DependencyInjectionApp.Repositories;
 using DependencyInjectionApp.Repositories.Base;
 using DependencyInjectionApp.Services;
@@ -20,7 +21,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 //builder.Services.AddTransient<IProductRepository, ProductJsonFileRepository>();
 
 builder.Services.AddTransient<IProductRepository>((serviceProvider) => {
-    IProductRepository repository = Random.Shared.Next(1, 10) % 2 == 1
+    IProductRepository repository = RepoController.toggle
         ? new ProductJsonFileRepository()
         : new ProductSqlRepository();
 
@@ -59,7 +60,7 @@ app.Run();
 
 
 
-// GET: /api/Users -> [content type = application/json]
+// GET: /api/Product
 //      JsonRepository
 //      SqlRepository
 
