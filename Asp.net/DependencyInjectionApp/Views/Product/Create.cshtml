@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Create new Product";
+}
+
+<form method="post" class="w-50">
+    <div class="input-group mb-3">
+        <span class="input-group-text">Name</span>
+        <input name="name" type="text" class="form-control" required>
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Price</span>
+        <input name="price" type="number" class="form-control">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Discount</span>
+        <input name="discount" type="number" class="form-control">
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-text">
+            <input name="InStock" class="form-check-input mt-0" type="checkbox">
+        </div>
+        <input type="text" class="form-control" value="In Stock?" readonly>
+    </div>
+
+    <button class="btn btn-success">Create</button>
+</form>

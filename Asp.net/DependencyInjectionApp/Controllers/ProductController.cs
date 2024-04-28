@@ -19,19 +19,22 @@ public class ProductController : Controller
         this.productService = productService;
     }
 
-    [HttpGet("api/[controller]")]
+    [HttpGet("/[controller]")]
     public async Task<IActionResult> Index() {
         var products = await productRepository.GetAllAsync();
 
         return base.View(products);
     }
 
-    public async Task<IActionResult> Create() {
-        var productToAdd = new Product {
-            Name = "Qwerty"
-        };
-        await productService.CreateNewProductAsync(productToAdd);
+    [HttpGet]
+    public IActionResult Create() {
+        return base.View();
+    }
 
-        return Ok();
+    [HttpPost]
+    public async Task<IActionResult> Create(Product product) {
+        await productService.CreateNewProductAsync(product);
+
+        return base.RedirectToAction("Index");
     }
 }

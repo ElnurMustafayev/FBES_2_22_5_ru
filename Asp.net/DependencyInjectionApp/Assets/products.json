@@ -16,5 +16,11 @@
         "Price": null,
         "InStock": null,
         "Discount": null
+    },
+    {
+        "Name": "Iphone",
+        "Price": 1900,
+        "InStock": null,
+        "Discount": 10
     }
 ]

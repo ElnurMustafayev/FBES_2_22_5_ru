@@ -16,8 +16,8 @@ builder.Services.AddControllersWithViews();
 //builder.Services.AddSingleton<IProductRepository, ProductJsonFileRepository>();
 //builder.Services.AddScoped<IProductRepository, ProductJsonFileRepository>();
 
-builder.Services.AddScoped<IProductService, ProductService>();
 
+// builder.Services.AddScoped<IProductService, ProductService>();
 //builder.Services.AddTransient<IProductRepository, ProductJsonFileRepository>();
 
 builder.Services.AddTransient<IProductRepository>((serviceProvider) => {
@@ -28,6 +28,12 @@ builder.Services.AddTransient<IProductRepository>((serviceProvider) => {
     System.Console.WriteLine($"{repository.GetType().Name} ServiceProvider");
 
     return repository;
+});
+
+builder.Services.AddScoped<IProductService>((serviceProvider) => {
+    var productRepository = serviceProvider.GetRequiredService<IProductRepository>();
+
+    return new ProductService(productRepository);
 });
 
 
@@ -41,11 +47,9 @@ var app = builder.Build();
 
 /*
     var scope = app.Services.CreateScope();
-    var productService = scope.ServiceProvider.GetRequiredService<IProductService>();
+    var productRepository = scope.ServiceProvider.GetRequiredService<IProductRepository>();
 
-    await productService.CreateNewProductAsync(new Product() {
-
-    });
+    await productRepository.EnsureCreated();
 */
 
 app.UseStaticFiles();
