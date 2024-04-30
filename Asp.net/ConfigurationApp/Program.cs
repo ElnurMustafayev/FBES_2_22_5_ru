@@ -1,4 +1,7 @@
 using ConfigurationApp.Models;
+using ConfigurationApp.Options;
+using ConfigurationApp.Repositories;
+using ConfigurationApp.Repositories.Base;
 using Microsoft.AspNetCore.Components.Forms;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,9 +36,19 @@ var testSettings = builder.Configuration
 System.Console.WriteLine(testSettings?.Numbers?.Count().ToString() ?? "NOTFOUND");
 */
 
+/*
 System.Console.WriteLine(builder.Configuration["MySettings:One"]);
 System.Console.WriteLine(builder.Configuration["MySettings:Two"]);
 System.Console.WriteLine(builder.Configuration["MySettings:Name"]);
+*/
+
+//System.Console.WriteLine(builder.Configuration["ConnectionStrings:SqlDb"]);
+//System.Console.WriteLine(builder.Configuration.GetConnectionString("SqlDb"));
+
+builder.Services.AddScoped<IProductRepository, ProductSqlRepository>();
+
+var homePageSettingsSection = builder.Configuration.GetSection("HomePageSettings");
+builder.Services.Configure<HomePageSettings>(homePageSettingsSection);
 
 var app = builder.Build();
 
