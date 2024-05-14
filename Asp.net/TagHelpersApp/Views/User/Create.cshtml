@@ -1,0 +1,30 @@
+@model User
+
+@{
+    ViewData["Title"] = "Create user";
+}
+
+<form asp-controller="User" asp-action="CreateNewUser" method="post">
+    <label asp-for="@Model.Name">Name: </label>
+    <input asp-for="@Model.Name" type="text">
+    <br>
+    <label asp-for="@Model.Surname">Surname: </label>
+    <input asp-for="@Model.Surname" type="text">
+    <br>
+
+    <button type="submit">Create</button>
+</form>
+
+<hr>
+
+<form action="/api/User" method="post">
+    @* <input type="hidden" name="Uid" id="Uid" value="@Guid.NewGuid().ToString()"> *@
+    <label for="Name">Name: </label>
+    <input type="text" name="Name" id="Name">
+    <br>
+    <label for="Surname">Surname: </label>
+    <input type="text" name="Surname" id="Surname">
+    <br>
+
+    <button type="submit">Create</button>
+</form>
