@@ -25,14 +25,3 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-
-// TagHelpers
-
-// Home -> Login / Registration
-
-// Identity/Login
-// api/Identity/Login
-// Identity/Registration
-// api/Identity/Registration
-
-// Не нужно создавать репозиторий

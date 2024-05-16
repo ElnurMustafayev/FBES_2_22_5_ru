@@ -38,7 +38,7 @@ public class UserController : Controller
         return base.RedirectToAction(actionName: "All");
     }
 
-    [Route("/api/[controller]/[action]")]
+    [Route("/api/[controller]/[action]", Name = "GetAllUsers")]
     [ActionName("All")]
     public IEnumerable<User> GetUsers() {
         return Users;

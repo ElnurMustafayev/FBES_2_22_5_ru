@@ -1,0 +1,29 @@
+@model Product
+
+@{
+    ViewData["Title"] = "Create new Product";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-route="CreateProductApi" method="post">
+    @* <div asp-validation-summary="All"></div> *@
+        
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" class="form-control">
+        <span class="d-block text-danger" asp-validation-for="Name"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label">Price</label>
+        <input asp-for="Price" type="number" class="form-control">
+        <span class="d-block text-danger" asp-validation-for="Price"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts {
+    @* <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script> *@
+}
