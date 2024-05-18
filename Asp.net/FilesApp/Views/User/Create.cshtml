@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Create new User";
+}
+
+<form enctype="multipart/form-data" asp-route="CreateNewUser" method="post">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name: </label>
+    <input type="text" class="form-control" id="name" name="name">
+  </div>
+  <div class="mb-3">
+    <label for="surname" class="form-label">Surname: </label>
+    <input type="text" class="form-control" id="surname" name="surname">
+  </div>
+  <div class="mb-3">
+    <label for="avatar" class="form-label">Avatar: </label>
+    <input type="file" class="form-control" id="avatar" name="avatar">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
