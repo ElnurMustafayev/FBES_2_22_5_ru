@@ -1,0 +1,12 @@
+@model User
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="/User/Avatar/@Model.Id">
+  <div class="card-body">
+    <h5 class="card-title">@Model.Fullname</h5>
+  </div>
+</div>
