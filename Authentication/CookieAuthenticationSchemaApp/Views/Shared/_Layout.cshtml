@@ -1,14 +1,4 @@
-﻿@inject IHttpContextAccessor httpAccessor
-
-@{
-    var authenticationValue = httpAccessor.HttpContext.Request.Cookies["Authentication"];
-
-    @* long? userId = string.IsNullOrWhiteSpace(authenticationValue)
-        ? null
-        : Convert.ToInt64(authenticationValue); *@
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -35,19 +25,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @if(string.IsNullOrWhiteSpace(authenticationValue)) {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-route="LoginView">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-route="RegistrationView">Registration</a>
-                            </li>
-                        }
-                        else {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Identity" asp-action="Logout">Logout</a>
-                            </li>
-                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-route="LoginView">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-route="RegistrationView">Registration</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -58,12 +41,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - CookieAuthenticationApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

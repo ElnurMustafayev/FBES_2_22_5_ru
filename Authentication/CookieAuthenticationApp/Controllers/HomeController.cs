@@ -1,20 +1,43 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using CookieAuthenticationApp.Models;
+using System.Data.SqlClient;
+using Dapper;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace CookieAuthenticationApp.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    private readonly IDataProtector dataProtector;
+    private readonly string identityConnectionString;
+    public HomeController(IConfiguration configuration, IDataProtectionProvider dataProtectionProvider)
     {
-        _logger = logger;
+        identityConnectionString = configuration.GetConnectionString("Identity") ?? throw new ArgumentNullException("Identity connection string");
+        this.dataProtector = dataProtectionProvider.CreateProtector("identity");
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        var authenticationHashedValue = base.HttpContext.Request.Cookies["Authentication"];
+
+        if(string.IsNullOrWhiteSpace(authenticationHashedValue) == false) {
+            var authenticationValue = this.dataProtector.Unprotect(authenticationHashedValue);
+
+            if(long.TryParse(authenticationValue, out long userId)) {
+                var connection = new SqlConnection(identityConnectionString);
+
+                var foundUser = await connection.QueryFirstOrDefaultAsync<User>(
+                    sql: "select * from Users where [Id] = @Id",
+                    param: new {
+                        Id = userId
+                    }
+                );
+
+                return View(foundUser);
+            }
+        }
+
         return View();
     }
 

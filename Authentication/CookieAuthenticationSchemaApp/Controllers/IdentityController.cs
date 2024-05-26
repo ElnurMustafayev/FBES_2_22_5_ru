@@ -1,16 +1,14 @@
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.IO.Pipes;
-using System.Linq;
-using System.Threading.Tasks;
-using CookieAuthenticationApp.Dtos;
-using CookieAuthenticationApp.Models;
+using System.Security.Claims;
+using CookieAuthenticationSchemaApp.Dtos;
+using CookieAuthenticationSchemaApp.Models;
 using Dapper;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CookieAuthenticationApp.Controllers
+namespace CookieAuthenticationSchemaApp.Controllers
 {
     public class IdentityController : Controller
     {
@@ -46,9 +44,17 @@ namespace CookieAuthenticationApp.Controllers
                 return base.RedirectToRoute("LoginView");
             }
 
-            var hashedUserId = this.dataProtector.Protect(foundUser.Id.ToString());
+            var claims = new Claim[] {
+                new(ClaimTypes.Email, foundUser.Email),
+                new(ClaimTypes.Name, foundUser.Name),
+                new("id", foundUser.Id.ToString()),
+            };
 
-            base.HttpContext.Response.Cookies.Append("Authentication", hashedUserId);
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+            await base.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
 
             return base.RedirectToAction(controllerName: "Home", actionName: "Index");
         }
