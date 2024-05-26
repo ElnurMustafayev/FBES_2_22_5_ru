@@ -8,6 +8,9 @@
 
 <form asp-route="LoginEndpoint" method="post">
   <div class="mb-3">
+    <input type="hidden" class="form-control" name="ReturnUrl" value="@ViewBag.ReturnUrl">
+  </div>
+  <div class="mb-3">
     <label asp-for=Login class="form-label">Email address</label>
     <input asp-for=Login type="email" class="form-control">
   </div>
