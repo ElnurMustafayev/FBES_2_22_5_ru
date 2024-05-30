@@ -30,6 +30,11 @@ builder.Services.AddAuthorization(options =>
     {
         policyBuilder.RequireClaim(ClaimTypes.Role, "Administrator", "Developer", "QA");
     });
+
+    options.AddPolicy("MyPolicyWithRoles", policyBuilder => {
+        //policyBuilder.RequireClaim(ClaimTypes.Role, "TestRole");
+        policyBuilder.RequireRole("TestRole");
+    });
 });
 
 var app = builder.Build();

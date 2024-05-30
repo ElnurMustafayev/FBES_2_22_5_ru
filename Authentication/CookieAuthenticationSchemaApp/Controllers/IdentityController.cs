@@ -60,6 +60,8 @@ namespace CookieAuthenticationSchemaApp.Controllers
                 new(ClaimTypes.Name, foundUser.Name),
                 new("id", foundUser.Id.ToString()),
                 new(ClaimTypes.Country, "Azerbaijan"),
+                //new(ClaimTypes.Role, "TestRole"),
+                new("role", "TestRole"),
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
