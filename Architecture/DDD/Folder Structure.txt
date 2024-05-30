@@ -1,0 +1,89 @@
+NOT DDD:
+
+/Repositories
+	/Base
+		/IUserRepository.cs
+	/UserEfCoreRepository.cs
+	/UserDapperRepository.cs
+/Services
+	/Base
+		/IUserService.cs
+	/UserService.cs
+	/LogService.cs
+	/FormFileService.cs
+/Controllers
+	/UserController.cs
+	/HomeController.cs
+/Models
+	/User.cs
+	/Log.cs
+/...
+
+
+
+DDD #1:
+
+/Data
+	/User
+		/Controllers
+			/V1
+				/UserController.cs
+			/V2
+				/UserController.cs
+		/Repositories
+			/Base
+				/IUserRepository.cs
+			/UserEfCoreRepository.cs
+			/UserDapperRepository.cs
+		/Services
+			/Base
+				/IUserService.cs
+			/UserService.cs
+		/Models
+			/DetailedUser.cs
+			/User.cs
+		/Dtos
+			/UserDto.cs
+	/Log
+		/Services
+			/LogService.cs
+		/Models
+			/Log.cs
+	/EfCore
+		/Data
+	/Common
+		/Controllers
+			/HomeController.cs
+		/Services
+			/FormFileService.cs
+		/ ...
+	/ ...
+
+DDD #2:
+
+/Repositories
+	/User
+		/Base
+			/IUserRepository.cs
+		/UserEfCoreRepository.cs
+		/UserDapperRepository.cs
+/Services
+	/User
+		/Base
+			/IUserService.cs
+		/UserService.cs
+	/Log
+		/LogService.cs
+	/Common
+		/FormFileService.cs
+/Controllers
+	/User
+		/UserController.cs
+	/Common
+		/HomeController.cs
+/Models
+	/User
+		/User.cs
+	/Log
+		/Log.cs
+/...
