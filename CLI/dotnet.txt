@@ -6,3 +6,5 @@ dotnet new console
 dotnet run
 
 dotnet add package {packageName}
+
+dotnet test
