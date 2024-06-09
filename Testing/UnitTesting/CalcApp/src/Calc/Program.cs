@@ -1,5 +1,18 @@
 ﻿using Calc.Services;
 
-decimal result = Calculator.Plus(15.5m, 25.5m);
+double result = new Calculator().Divide(10, null);
 
 System.Console.WriteLine(result);
+
+
+
+
+/*
+src/.csproj
+test/.csproj
+.sln
+*/
+
+// bool canGetVisa = visaService.CanGetVisa(double? money, bool isMarried)
+
+// Виза выдаётся только тем, кто не холост и у кого на счету >= 20k $
