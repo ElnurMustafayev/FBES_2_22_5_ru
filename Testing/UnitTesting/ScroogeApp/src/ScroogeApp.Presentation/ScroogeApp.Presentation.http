@@ -1,0 +1,6 @@
+@ScroogeApp.Presentation_HostAddress = http://localhost:5106
+
+GET {{ScroogeApp.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

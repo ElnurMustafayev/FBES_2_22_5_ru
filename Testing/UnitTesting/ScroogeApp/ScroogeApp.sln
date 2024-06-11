@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3CFE36BA-2788-4C30-A9EE-58443E6743AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScroogeApp.Core", "src\ScroogeApp.Core\ScroogeApp.Core.csproj", "{DA47764F-5041-41EC-A134-AEA3676A7809}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScroogeApp.Infrastructure", "src\ScroogeApp.Infrastructure\ScroogeApp.Infrastructure.csproj", "{70575B88-0560-49F9-AFD0-DCEA86E78F18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScroogeApp.Presentation", "src\ScroogeApp.Presentation\ScroogeApp.Presentation.csproj", "{2A129DD4-0D5D-4897-B3C7-0DCA078E8481}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0731B478-93BA-405F-B4F2-440F40363A35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScroogeApp.Infrastructure.Tests", "test\ScroogeApp.Infrastructure.Tests\ScroogeApp.Infrastructure.Tests.csproj", "{D5AEE18B-F23D-4B64-B750-DA77BE86D48D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA47764F-5041-41EC-A134-AEA3676A7809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA47764F-5041-41EC-A134-AEA3676A7809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA47764F-5041-41EC-A134-AEA3676A7809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA47764F-5041-41EC-A134-AEA3676A7809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70575B88-0560-49F9-AFD0-DCEA86E78F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70575B88-0560-49F9-AFD0-DCEA86E78F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70575B88-0560-49F9-AFD0-DCEA86E78F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70575B88-0560-49F9-AFD0-DCEA86E78F18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A129DD4-0D5D-4897-B3C7-0DCA078E8481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A129DD4-0D5D-4897-B3C7-0DCA078E8481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A129DD4-0D5D-4897-B3C7-0DCA078E8481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A129DD4-0D5D-4897-B3C7-0DCA078E8481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5AEE18B-F23D-4B64-B750-DA77BE86D48D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5AEE18B-F23D-4B64-B750-DA77BE86D48D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5AEE18B-F23D-4B64-B750-DA77BE86D48D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5AEE18B-F23D-4B64-B750-DA77BE86D48D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DA47764F-5041-41EC-A134-AEA3676A7809} = {3CFE36BA-2788-4C30-A9EE-58443E6743AC}
+		{70575B88-0560-49F9-AFD0-DCEA86E78F18} = {3CFE36BA-2788-4C30-A9EE-58443E6743AC}
+		{2A129DD4-0D5D-4897-B3C7-0DCA078E8481} = {3CFE36BA-2788-4C30-A9EE-58443E6743AC}
+		{D5AEE18B-F23D-4B64-B750-DA77BE86D48D} = {0731B478-93BA-405F-B4F2-440F40363A35}
+	EndGlobalSection
+EndGlobal
