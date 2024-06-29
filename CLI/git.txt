@@ -29,6 +29,8 @@ git commit -a -m "Commit title" -m "Commit Description"
 git push origin main
 git pull origin main
 
+git fetch --prune
+
 git reset --hard HEAD^
 
 git log --graph --decorate

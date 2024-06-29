@@ -1,0 +1,21 @@
+ls
+ls -la
+cd
+
+touch
+mkdir
+
+cat
+nano
+vim
+
+grep
+less
+head
+tail
+
+sudo
+apt update
+apt install
+
+history
