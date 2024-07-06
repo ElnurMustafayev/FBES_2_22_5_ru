@@ -1,0 +1,4 @@
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'CqrsDb')
+BEGIN
+    CREATE DATABASE [CqrsDb]
+END
