@@ -1,0 +1,8 @@
+apt install -y popstgresql-client
+
+psql --host=myprodpostgresqlserver.postgres.database.azure.com --dbname=postgres --user=azureuser
+
+\l - list of databases
+\c {dbame} - connect to database
+\dt - list of current database tables
+\d {tablename} - table info

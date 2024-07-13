@@ -1,0 +1,56 @@
+~/MyProjects/MyPostgreMvcApp/publish
+
+
+sudo apt update
+sudo apt install nginx
+
+sudo service nginx status
+
+cd /etc/nginx/sites-available
+sudo touch myapp.conf
+sudo nano myapp.conf
+
+# write nginx config
+server {
+    listen        80;
+    server_name   {server ip};
+
+    location / {
+        proxy_pass         http://localhost:5000;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection keep-alive;
+        proxy_set_header   Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+    }
+}
+
+sudo ln -s /etc/nginx/sites-available/myapp.conf /etc/nginx/sites-enabled
+
+sudo service nginx restart
+sudo service nginx status
+
+
+cd /etc/systemd/system
+sudo touch myapp.service
+sudo nano myapp.service
+
+# write service config
+[Unit]
+Description=Example .NET Web App running on Linux
+
+[Service]
+WorkingDirectory=/home/azureuser/MyProjects/MyPostgreMvcApp/publish
+ExecStart=/usr/bin/dotnet /home/azureuser/MyProjects/MyPostgreMvcApp/publish/MyPostgreMvcApp.dll
+Restart=always
+RestartSec=10
+KillSignal=SIGINT
+SyslogIdentifier=dotnet-example
+User=www-data
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_NOLOGO=true
+
+[Install]
+WantedBy=multi-user.target
