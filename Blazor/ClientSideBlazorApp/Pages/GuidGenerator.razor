@@ -1,0 +1,17 @@
+@page "/guid/generator"
+
+<PageTitle>Guid generator</PageTitle>
+
+<div>
+    <p>@GuidStr</p>
+
+    <button class="btn btn-success" @onclick=ChangeGuid>Generate</button>
+</div>
+
+@code {
+    public string? GuidStr { get; set; } = "empty";
+
+    public void ChangeGuid() {
+        this.GuidStr = Guid.NewGuid().ToString();
+    }
+}

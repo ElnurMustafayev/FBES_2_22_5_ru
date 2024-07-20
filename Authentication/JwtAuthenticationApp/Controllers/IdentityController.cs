@@ -6,12 +6,14 @@ using System.Text;
 using JwtAuthenticationApp.Dtos;
 using JwtAuthenticationApp.Models;
 using JwtAuthenticationApp.Options;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 [ApiController]
+[AllowAnonymous]
 [Route("/api/[controller]/[action]")]
 public class IdentityController : ControllerBase
 {

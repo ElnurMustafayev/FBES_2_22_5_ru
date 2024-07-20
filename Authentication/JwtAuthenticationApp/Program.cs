@@ -4,12 +4,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-var jwtSection = builder.Configuration.GetSection("Jwt");
-builder.Services.Configure<JwtOptions>(jwtSection);
 
 builder.Services.AddDbContext<MyDbContext>(options => {
     var connectinoString = builder.Configuration.GetConnectionString("IdentityDb");
@@ -19,9 +17,10 @@ builder.Services.AddDbContext<MyDbContext>(options => {
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<MyDbContext>();
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+
+var jwtSection = builder.Configuration.GetSection("Jwt");
+builder.Services.Configure<JwtOptions>(jwtSection);
 
 builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -46,6 +45,54 @@ builder.Services.AddAuthentication(options => {
         };
     });
 
+
+
+builder.Services.AddSwaggerGen(options => {
+    options.SwaggerDoc("v1", new OpenApiInfo() {
+        Title = "Jwt Identity Service",
+        Version = "v1",
+    });
+
+    options.AddSecurityDefinition(
+        name: JwtBearerDefaults.AuthenticationScheme, 
+        securityScheme: new OpenApiSecurityScheme() {
+            Description = "Input yout JWT token here:",
+            In = ParameterLocation.Header,
+            Name = "Authorization",
+            Type = SecuritySchemeType.Http,
+            Scheme = JwtBearerDefaults.AuthenticationScheme,
+        });
+
+    options.AddSecurityRequirement(
+        new OpenApiSecurityRequirement() {
+            {
+                new OpenApiSecurityScheme() {
+                    Reference = new OpenApiReference() {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                },
+                new string[] {}
+            }
+        }
+    );
+});
+
+
+builder.Services.AddCors(options => {
+    options.AddPolicy("BlazorApp", policyBuilder => {
+        policyBuilder
+            .WithOrigins("http://localhost:5025")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
@@ -58,5 +105,7 @@ app.MapControllers();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors("BlazorApp");
 
 app.Run();

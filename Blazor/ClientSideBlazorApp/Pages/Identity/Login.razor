@@ -1,0 +1,66 @@
+﻿@page "/Identity/Login"
+@inject IHttpClientFactory httpClientFactory
+@inject NavigationManager navigationManager 
+@inject IJSRuntime jsRuntime
+@inject ILocalStorageService localStorageService
+
+<PageTitle>Login</PageTitle>
+
+<h1>login</h1>
+
+<EditForm Model="loginDto" OnValidSubmit="OnLoginFormValidSumbit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <div class="@AlertVisibleClass alert alert-danger" role="alert">
+        @httpResponseErrorMessage
+    </div>
+    
+    <div class="mb-3">
+        <label for="login" class="form-label">Login</label>
+        <input type="text" class="form-control" id="login" @bind-value=loginDto.Login>
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" @bind-value=loginDto.Password>
+    </div>
+
+    <button class="btn btn-success">Login</button>
+</EditForm>
+
+@code {
+    private string? httpResponseErrorMessage;
+    public string? AlertVisibleClass => string.IsNullOrEmpty(httpResponseErrorMessage) ? "invisible" : "visible";
+
+    public class LoginDto {
+        [Required]
+        public string Login { get; set; }
+        
+        [Required]
+        public string Password { get; set; }
+    }
+
+    public LoginDto loginDto { get; set; } = new();
+
+    public async Task OnLoginFormValidSumbit() {
+        httpResponseErrorMessage = null;
+        var httpClient = httpClientFactory.CreateClient();
+
+        var loginHttpResponse = await httpClient.PostAsJsonAsync("http://localhost:5066/api/Identity/Login", loginDto, CancellationToken.None);
+
+        var loginHttpResponseStr = await loginHttpResponse.Content.ReadAsStringAsync();
+
+        if(loginHttpResponse.IsSuccessStatusCode == false) {
+            httpResponseErrorMessage = loginHttpResponseStr;
+            return;
+        }
+
+        await localStorageService.SetItemAsStringAsync("jwt", loginHttpResponseStr);
+
+        //var tokenStr = await jsRuntime.InvokeAsync<string>("localStorage.getItem", "token");
+        //await jsRuntime.InvokeVoidAsync("alert", tokenStr);
+
+        navigationManager.NavigateTo("/");
+    }
+}

@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace JwtAuthenticationApp.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("/api/[controller]/[action]")]
     public class SecretController : ControllerBase
     {
-        [Authorize]
         [HttpGet]
         public string Code() {
             return "verysecretcode";
