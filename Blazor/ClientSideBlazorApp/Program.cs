@@ -9,7 +9,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient("IdentityService", httpClient =>
+{
+    httpClient.BaseAddress = new Uri("http://localhost:5066/");
+});
 builder.Services.AddBlazoredLocalStorageAsSingleton();
 
 await builder.Build().RunAsync();

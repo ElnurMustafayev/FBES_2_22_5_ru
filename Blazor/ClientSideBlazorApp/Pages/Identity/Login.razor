@@ -45,9 +45,9 @@
 
     public async Task OnLoginFormValidSumbit() {
         httpResponseErrorMessage = null;
-        var httpClient = httpClientFactory.CreateClient();
+        var httpClient = httpClientFactory.CreateClient("IdentityService");
 
-        var loginHttpResponse = await httpClient.PostAsJsonAsync("http://localhost:5066/api/Identity/Login", loginDto, CancellationToken.None);
+        var loginHttpResponse = await httpClient.PostAsJsonAsync("/api/Identity/Login", loginDto, CancellationToken.None);
 
         var loginHttpResponseStr = await loginHttpResponse.Content.ReadAsStringAsync();
 
