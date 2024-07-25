@@ -13,7 +13,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 [ApiController]
-[AllowAnonymous]
 [Route("/api/[controller]/[action]")]
 public class IdentityController : ControllerBase
 {
@@ -69,7 +68,8 @@ public class IdentityController : ControllerBase
             audience: jwtOptions.Audience,
             claims: claims,
             //notBefore: DateTime.Now.AddMinutes(2),
-            expires: DateTime.Now.AddMinutes(jwtOptions.LifeTimeInMinutes),
+            //expires: DateTime.Now.AddMinutes(jwtOptions.LifeTimeInMinutes),
+            expires: DateTime.Now.AddSeconds(10),
             signingCredentials: signingCredentials
         );
 
@@ -92,9 +92,85 @@ public class IdentityController : ControllerBase
             return base.BadRequest(result.Errors);
         }
 
-        await this.roleManager.CreateAsync(new IdentityRole(UserRoleDefaults.User));
         await userManager.AddToRoleAsync(newUser, UserRoleDefaults.User);
 
         return Ok();
     }
+    
+    [HttpPut]
+    [ActionName("Token")]
+    public async Task<IActionResult> UpdateToken() {
+        var tokenStr = base.HttpContext.Request.Headers.Authorization.FirstOrDefault();
+
+        if(tokenStr is null) {
+            return base.StatusCode(401);
+        }
+
+        if(tokenStr.StartsWith("Bearer ")) {
+            tokenStr = tokenStr.Substring("Bearer ".Length);
+            System.Console.WriteLine(tokenStr);
+        }
+
+        var handler = new JwtSecurityTokenHandler();
+        var tokenValidationResult = await handler.ValidateTokenAsync(
+            tokenStr,
+            new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidIssuer = "MyApplication",
+
+                ValidateAudience = true,
+                ValidAudience = "Big Company",
+
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(jwtOptions.KeyInBytes)
+            }
+        );
+
+        if(tokenValidationResult.IsValid == false) {
+            return BadRequest(tokenValidationResult.Exception);
+        }
+
+        var token = handler.ReadJwtToken(tokenStr);
+
+        Claim? idClaim = token.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier);
+
+        if(idClaim is null) {
+            return BadRequest($"Token has no claim with type '{ClaimTypes.NameIdentifier}'");
+        }
+
+        var userId = idClaim.Value;
+
+        IdentityUser? foundUser = await this.userManager.FindByIdAsync(userId);
+
+        if(foundUser is null) {
+            return BadRequest($"User not found by id: '{userId}'");
+        }
+
+        var roles = await userManager.GetRolesAsync(foundUser);
+        
+        var claims = roles
+            .Select(roleStr => new Claim(ClaimTypes.Role, roleStr))
+            .Append(new Claim(ClaimTypes.NameIdentifier, foundUser.Id))
+            .Append(new Claim(ClaimTypes.Email, foundUser.Email ?? "not set"))
+            .Append(new Claim(ClaimTypes.Name, foundUser.UserName ?? "not set"));
+
+        var signingKey = new SymmetricSecurityKey(jwtOptions.KeyInBytes);
+        var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
+
+        var newToken = new JwtSecurityToken(
+            issuer: jwtOptions.Issuer,
+            audience: jwtOptions.Audience,
+            claims: claims,
+            //notBefore: DateTime.Now.AddMinutes(2),
+            //expires: DateTime.Now.AddMinutes(jwtOptions.LifeTimeInMinutes),
+            expires: DateTime.Now.AddSeconds(10),
+            signingCredentials: signingCredentials
+        );
+
+        var newTokenStr = handler.WriteToken(newToken);
+
+        return Ok(newTokenStr);
+    }
+
 }

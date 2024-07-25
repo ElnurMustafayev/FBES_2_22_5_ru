@@ -3,6 +3,7 @@
 @inject NavigationManager navigationManager 
 @inject IJSRuntime jsRuntime
 @inject ILocalStorageService localStorageService
+@inject AuthenticationStateProvider authenticationStateProvider
 
 <PageTitle>Login</PageTitle>
 
@@ -58,9 +59,11 @@
 
         await localStorageService.SetItemAsStringAsync("jwt", loginHttpResponseStr);
 
+        await authenticationStateProvider.GetAuthenticationStateAsync();
+
         //var tokenStr = await jsRuntime.InvokeAsync<string>("localStorage.getItem", "token");
         //await jsRuntime.InvokeVoidAsync("alert", tokenStr);
 
-        navigationManager.NavigateTo("/");
+        navigationManager.NavigateTo("/", true);
     }
 }

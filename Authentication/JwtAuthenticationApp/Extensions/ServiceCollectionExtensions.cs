@@ -108,7 +108,6 @@ public static class ServiceCollectionExtensions
             {
                 policyBuilder
                     .WithOrigins("http://localhost:5025")
-                    .WithOrigins("https://localhost:7234")
                     .AllowAnyHeader()
                     .AllowAnyMethod();
             });
