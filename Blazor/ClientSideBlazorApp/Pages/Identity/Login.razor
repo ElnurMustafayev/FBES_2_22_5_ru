@@ -50,14 +50,21 @@
 
         var loginHttpResponse = await httpClient.PostAsJsonAsync("/api/Identity/Login", loginDto, CancellationToken.None);
 
-        var loginHttpResponseStr = await loginHttpResponse.Content.ReadAsStringAsync();
 
         if(loginHttpResponse.IsSuccessStatusCode == false) {
-            httpResponseErrorMessage = loginHttpResponseStr;
+            httpResponseErrorMessage = await loginHttpResponse.Content.ReadAsStringAsync();
             return;
         }
 
-        await localStorageService.SetItemAsStringAsync("jwt", loginHttpResponseStr);
+        var refreshAccessTokens = await loginHttpResponse.Content.ReadFromJsonAsync<RefreshAccessTokens>();
+
+        if(refreshAccessTokens is null) {
+            httpResponseErrorMessage = "Error in login";
+            return;
+        }
+
+        await localStorageService.SetItemAsStringAsync("jwt", refreshAccessTokens.Access);
+        await localStorageService.SetItemAsStringAsync("refresh", refreshAccessTokens.Refresh);
 
         await authenticationStateProvider.GetAuthenticationStateAsync();
 

@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Json;
 using System.Security.Claims;
 using Blazored.LocalStorage;
+using ClientSideBlazorApp.Models;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.IdentityModel.Tokens;
 
@@ -23,8 +24,9 @@ public class JwtAuthenticationStateProvider : AuthenticationStateProvider
     }
 
     private async Task<ClaimsIdentity?> GetClaimsIdentity() {
-        var jwt = await this.localStorageService.GetItemAsync<string>("jwt");
-        if(string.IsNullOrWhiteSpace(jwt))
+        var jwt = await this.localStorageService.GetItemAsStringAsync("jwt");
+        var refresh = await this.localStorageService.GetItemAsStringAsync("refresh");
+        if(string.IsNullOrWhiteSpace(jwt) || string.IsNullOrWhiteSpace(refresh))
             return null;
 
         var result = await this.jwtSecurityTokenHandler.ValidateTokenAsync(
@@ -46,19 +48,23 @@ public class JwtAuthenticationStateProvider : AuthenticationStateProvider
             });
 
         if(result.IsValid == false) {
-            Console.WriteLine("Token error: " + result.Exception.Message);
             if(result.Exception is SecurityTokenInvalidLifetimeException) {
                 var identityServiceHttpClient = httpClientFactory.CreateClient("IdentityService");
                 identityServiceHttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {jwt}");
-                var httpResult = await identityServiceHttpClient.PutAsync("/api/Identity/Token", null);
+                var httpResult = await identityServiceHttpClient.PutAsync($"/api/Identity/Token?refresh={refresh}", null);
 
                 if(httpResult.IsSuccessStatusCode == false) {
-                    System.Console.WriteLine("Update Token error: " + await httpResult.Content.ReadAsStringAsync());
                     return null;
                 }
                 
-                var newToken = await httpResult.Content.ReadAsStringAsync();
-                await this.localStorageService.SetItemAsStringAsync("jwt", newToken);
+                var refreshAccessTokens = await httpResult.Content.ReadFromJsonAsync<RefreshAccessTokens>();
+
+                if(refreshAccessTokens is null) {
+                    return null;
+                }
+                
+                await this.localStorageService.SetItemAsStringAsync("jwt", refreshAccessTokens.Access);
+                await this.localStorageService.SetItemAsStringAsync("refresh", refreshAccessTokens.Refresh);
 
                 var newTokenObj = this.jwtSecurityTokenHandler.ReadJwtToken(jwt);
                 return new ClaimsIdentity(newTokenObj.Claims, "jwt");

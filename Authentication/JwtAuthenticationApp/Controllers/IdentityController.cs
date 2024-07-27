@@ -1,14 +1,18 @@
 namespace JwtAuthenticationApp.Controllers;
 
+using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using JwtAuthenticationApp.Data;
 using JwtAuthenticationApp.Dtos;
+using JwtAuthenticationApp.Entity;
 using JwtAuthenticationApp.Models;
 using JwtAuthenticationApp.Options;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -20,18 +24,21 @@ public class IdentityController : ControllerBase
     private readonly UserManager<IdentityUser> userManager;
     private readonly SignInManager<IdentityUser> signInManager;
     private readonly RoleManager<IdentityRole> roleManager;
+    private readonly MyDbContext dbContext;
 
     public IdentityController(
         IOptionsSnapshot<JwtOptions> jwtOptionsSnapshot,
         UserManager<IdentityUser> userManager,
         SignInManager<IdentityUser> signInManager,
-        RoleManager<IdentityRole> roleManager
+        RoleManager<IdentityRole> roleManager,
+        MyDbContext dbContext
         )
     {
         this.jwtOptions = jwtOptionsSnapshot.Value;
         this.userManager = userManager;
         this.signInManager = signInManager;
         this.roleManager = roleManager;
+        this.dbContext = dbContext;
     }
 
     [HttpPost]
@@ -68,15 +75,26 @@ public class IdentityController : ControllerBase
             audience: jwtOptions.Audience,
             claims: claims,
             //notBefore: DateTime.Now.AddMinutes(2),
-            //expires: DateTime.Now.AddMinutes(jwtOptions.LifeTimeInMinutes),
-            expires: DateTime.Now.AddSeconds(10),
+            expires: DateTime.Now.AddMinutes(jwtOptions.LifeTimeInMinutes),
             signingCredentials: signingCredentials
         );
 
         var handler = new JwtSecurityTokenHandler();
         var tokenStr = handler.WriteToken(token);
 
-        return Ok(tokenStr);
+        // create refresh token
+        var refreshToken = new RefreshToken {
+            UserId = foundUser.Id,
+            Token = Guid.NewGuid(),
+        };
+
+        await dbContext.RefreshTokens.AddAsync(refreshToken);
+        await dbContext.SaveChangesAsync();
+
+        return Ok(new {
+            refresh = refreshToken.Token,
+            access = tokenStr,
+        });
     } 
 
     [HttpPost]
@@ -99,7 +117,7 @@ public class IdentityController : ControllerBase
     
     [HttpPut]
     [ActionName("Token")]
-    public async Task<IActionResult> UpdateToken() {
+    public async Task<IActionResult> UpdateToken([Required]Guid refresh) {
         var tokenStr = base.HttpContext.Request.Headers.Authorization.FirstOrDefault();
 
         if(tokenStr is null) {
@@ -147,6 +165,47 @@ public class IdentityController : ControllerBase
             return BadRequest($"User not found by id: '{userId}'");
         }
 
+        // check refresh token
+        var oldRefreshToken = await dbContext.RefreshTokens.FirstOrDefaultAsync(rt => (rt.Token == refresh) && (rt.UserId == foundUser.Id));
+
+        // if token stealed
+        /*
+        if (oldRefreshToken.State == RefreshTokenStates.ForUpdate) {
+            var allUserRefreshTokens = dbContext.RefreshTokens.Where(rt => rt.UserId == foundUser.Id);
+            dbContext.RefreshTokens.RemoveRange(allUserRefreshTokens);
+            await dbContext.SaveChangesAsync();
+        }
+        */
+
+
+        // if(oldRefreshToken.Status == RefreshTokenStates.RemovedBecauseStealed) {
+        //     return BadRequest();
+        // }
+
+        // if(oldRefreshToken.Status == RefreshTokenStates.ForceLogOut) {
+        //     return BadRequest();
+        // }
+
+        if(oldRefreshToken is null) {
+            var allUserRefreshTokens = dbContext.RefreshTokens.Where(rt => rt.UserId == foundUser.Id);
+            // allUserRefreshTokens.Update(rt => rt.Status = RefreshTokenStates.RemovedBecauseStealed);
+            // await dbContext.SaveChangesAsync();
+            // return BadRequest();
+            dbContext.RefreshTokens.RemoveRange(allUserRefreshTokens);
+            await dbContext.SaveChangesAsync();
+
+            return BadRequest("Refresh token not found!");
+        }
+
+        // update refresh token
+        dbContext.RefreshTokens.Remove(oldRefreshToken);
+        var newRefreshToken = new RefreshToken  {
+            UserId = foundUser.Id,
+            Token = Guid.NewGuid()
+        };
+        await dbContext.RefreshTokens.AddAsync(newRefreshToken);
+        await dbContext.SaveChangesAsync();
+
         var roles = await userManager.GetRolesAsync(foundUser);
         
         var claims = roles
@@ -170,7 +229,17 @@ public class IdentityController : ControllerBase
 
         var newTokenStr = handler.WriteToken(newToken);
 
-        return Ok(newTokenStr);
+        return Ok(new {
+            refresh = newRefreshToken.Token,
+            access = newTokenStr,
+        });
     }
 
+    /*
+    [Authorize]
+    [HttpPatch]
+    public async Task<IActionResult> LogOutFrom([Required]Guid refresh) {
+        // refresh.Status = RefreshTokenStates.ForceLogOut
+    }
+    */
 }
