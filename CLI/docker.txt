@@ -1,0 +1,21 @@
+docker
+docker images - выводит список всех установленных образов
+docker pull <image_name> - скачать образ
+
+docker ps - выводит список всех запущенных контейнеров
+docker ps -a - выводит список всех контейнеров
+
+docker rmi <image_id> - удаляет образ(-ы)
+docker rm <container_id> - удаляет не рабочий контейнер(-ы)
+
+docker run <image_id> - запустить контейнер
+docker run --name <container_name> <image_id> - задать название для будущего контейнера
+docker run -e var=val <image_id> - проинициализировать environment variable для контейнера
+docker run -d <image_id> - фоновый запуск контейнера
+docker run -p <local_port>:<container_port> <container_id> - настройка проксирования портов
+
+docker start <container_id> - запускает остановленный контейнер
+docker stop <container_id> - останавливает контейнер
+
+docker logs <container_id> - выводит stdout запущенного контейнера
+docker exec -it <container_id> <shell_name> - вход в запущенный контейнер через указанную оболочку
