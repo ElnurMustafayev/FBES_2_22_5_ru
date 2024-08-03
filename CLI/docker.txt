@@ -19,3 +19,7 @@ docker stop <container_id> - останавливает контейнер
 
 docker logs <container_id> - выводит stdout запущенного контейнера
 docker exec -it <container_id> <shell_name> - вход в запущенный контейнер через указанную оболочку
+
+docker build . - создаёт образ на основе Dockerfile файла
+docker build -t <imagename>:<imagetag> . - задать название для будущего образа
+docker build -f <dockerfilepath> . - создать образ на основе другого Dockerfile файла
