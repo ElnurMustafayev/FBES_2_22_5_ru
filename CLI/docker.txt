@@ -9,6 +9,7 @@ docker rmi <image_id> - удаляет образ(-ы)
 docker rm <container_id> - удаляет не рабочий контейнер(-ы)
 
 docker run <image_id> - запустить контейнер
+docker run -v <volume_name>:<container_path> <image_id>
 docker run --name <container_name> <image_id> - задать название для будущего контейнера
 docker run -e var=val <image_id> - проинициализировать environment variable для контейнера
 docker run -d <image_id> - фоновый запуск контейнера
@@ -23,3 +24,11 @@ docker exec -it <container_id> <shell_name> - вход в запущенный �
 docker build . - создаёт образ на основе Dockerfile файла
 docker build -t <imagename>:<imagetag> . - задать название для будущего образа
 docker build -f <dockerfilepath> . - создать образ на основе другого Dockerfile файла
+
+
+
+docker volume
+docker volume ls
+docker volume create <volume_name>
+
+
