@@ -14,6 +14,7 @@ docker run --name <container_name> <image_id> - задать название д
 docker run -e var=val <image_id> - проинициализировать environment variable для контейнера
 docker run -d <image_id> - фоновый запуск контейнера
 docker run -p <local_port>:<container_port> <container_id> - настройка проксирования портов
+docker run --network=<network_name>
 
 docker start <container_id> - запускает остановленный контейнер
 docker stop <container_id> - останавливает контейнер
@@ -31,4 +32,6 @@ docker volume
 docker volume ls
 docker volume create <volume_name>
 
-
+docker network
+docker network ls
+docker network create -d <network_driver_name> <network_name>
