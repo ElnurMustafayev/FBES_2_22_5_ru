@@ -35,3 +35,6 @@ docker volume create <volume_name>
 docker network
 docker network ls
 docker network create -d <network_driver_name> <network_name>
+
+docker-compose up -d
+docker-compose down
