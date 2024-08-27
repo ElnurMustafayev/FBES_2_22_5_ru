@@ -1,0 +1,48 @@
+name: Restore, Build, Test and Deploy dotnet WebApi app
+
+on:
+  push:
+
+jobs:
+  restore_build_test:
+    name: Restore Dependencies, Build Project and Run Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup dotnet 8.0
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Project
+        run: dotnet build
+
+      - name: Run Unit Tests
+        run: dotnet test
+
+  deploy:
+    name: Build and Push Docker image
+    runs-on: ubuntu-latest
+    needs: [restore_build_test]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Docker Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_TOKEN}}
+
+      - name: Build Image
+        run: docker build . -t ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.IMAGE_NAME}}:latest
+
+      - name: Push Image
+        run: docker push ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.IMAGE_NAME}}:latest

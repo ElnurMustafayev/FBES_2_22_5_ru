@@ -26,6 +26,8 @@ docker build . - создаёт образ на основе Dockerfile файл
 docker build -t <imagename>:<imagetag> . - задать название для будущего образа
 docker build -f <dockerfilepath> . - создать образ на основе другого Dockerfile файла
 
+docker login
+
 
 
 docker volume
