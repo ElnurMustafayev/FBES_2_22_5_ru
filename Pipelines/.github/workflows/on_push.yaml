@@ -46,3 +46,15 @@ jobs:
 
       - name: Push Image
         run: docker push ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.IMAGE_NAME}}:latest
+
+      - name: Connect to VM with SSH, update and run docker containers
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /home/azureuser/Microservices
+            sudo docker compose pull
+            sudo docker compose down
+            sudo docker compose up -d
