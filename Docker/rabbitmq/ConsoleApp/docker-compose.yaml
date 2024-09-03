@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  rabbitmq:
+    image: rabbitmq:3.12.14-management
+    container_name: rabbitmq_app
+    environment:
+      - RABBITMQ_DEFAULT_USER=rmuser
+      - RABBITMQ_DEFAULT_PASS=rmpassword
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    networks:
+      - mynetwork
+    restart: always
+
+  # console:
+  #   image: console
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: consoleapp
+  #   depends_on:
+  #     - rabbitmq
+  #   networks:
+  #     - mynetwork
+  #   restart: always
+
+volumes:
+  rabbitmq:
+
+networks:
+  mynetwork:
+    driver: bridge
