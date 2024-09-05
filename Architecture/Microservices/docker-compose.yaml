@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  webapi1:
+    image: webapi1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webapi1_app
+    environment:
+      ASPNETCORE_URLS: http://+:80
+    ports:
+      - 5000:80
+    networks:
+      - mynetwork
+    restart: always
+
+  webapi2:
+    image: webapi2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webapi2_app
+    environment:
+      ASPNETCORE_URLS: http://+:80
+    ports:
+      - 6000:80
+    networks:
+      - mynetwork
+    restart: always
+
+  gatewayA:
+    image: gatewayA
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gatewayA_app
+    depends_on:
+      - webapi1
+      - webapi2
+    environment:
+      ASPNETCORE_URLS: http://+:80
+    ports:
+      - 6000:80
+    networks:
+      - mynetwork
+    restart: always
+
+networks:
+  mynetwork:
+    driver: bridge

@@ -1,0 +1,34 @@
+{
+    "Routes": [
+        {
+            "UpstreamPathTemplate": "/Users",
+            "UpstreamHttpMethod": [
+                "Get"
+            ],
+
+            "DownstreamPathTemplate": "/api/Users/All",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": "5248"
+                }
+            ]
+        },
+        {
+            "UpstreamPathTemplate": "/api/Registration",
+            "UpstreamHttpMethod": [
+                "Post"
+            ],
+
+            "DownstreamPathTemplate": "/api/Identity/SignUp",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": "5171"
+                }
+            ]
+        }
+    ]
+}
