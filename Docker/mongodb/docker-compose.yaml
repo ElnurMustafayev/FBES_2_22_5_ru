@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  rabbitmq:
+    image: mongo
+    container_name: mongodb
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - 27017:27017
+    restart: always
+
+volumes:
+  mongodb_data:

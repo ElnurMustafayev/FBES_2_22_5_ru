@@ -1,0 +1,12 @@
+mongosh --host localhost --port 27017
+
+show dbs
+use <db_name>
+
+db.stats()
+db.createCollection("<collection_name>")
+
+show collections
+db.<collection_name>.insertOne({ name: "Bob", surname: "Marley" })
+db.<collection_name>.find()
+db.<collection_name>.find({ <field_name>: { $gt: <value> } })   # where <field_name> greater than <value>
