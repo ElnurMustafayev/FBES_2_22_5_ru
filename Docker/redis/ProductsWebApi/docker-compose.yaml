@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis
+    container_name: redis_db
+    networks:
+      - mybridgenetwork
+    ports:
+      - 6379:6379
+    expose:
+      - 6379
+
+  postgres:
+    image: postgres
+    container_name: postgres_db
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=Secret12345!
+      - POSTGRES_DB=mydatabase
+    networks:
+      - mybridgenetwork
+    ports:
+      - 5432:5432
+    volumes:
+      - mydatabasevolume:/var/lib/postgresql/data
+    expose:
+      - 5432
+
+  webapi:
+    image: webapi
+    container_name: webapi_app
+    depends_on:
+      - postgres
+      - redis
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - mybridgenetwork
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+
+networks:
+  mybridgenetwork:
+    driver: bridge
+
+volumes:
+  mydatabasevolume:

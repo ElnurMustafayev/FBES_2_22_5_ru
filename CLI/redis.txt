@@ -1,0 +1,4 @@
+ping
+
+set <key> <value>
+get <key>
